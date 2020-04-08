@@ -19,7 +19,6 @@ public class CameraDragging : MonoBehaviour
     private Vector3 _touchOrigin;
 
     private bool _isDragging;
-    private bool _canDrag;
 
     [Tooltip("The speed of the camera dragging, also affects movement by keyboard.")]
     [SerializeField]
@@ -29,13 +28,14 @@ public class CameraDragging : MonoBehaviour
     [SerializeField]
     private float _draggingThreshold = 0.001f;
 
+    [SerializeField]
+    private bool _canDrag = false;
+
 
     private void Start()
     {
         // Set _camera to the Main Camera.
         _camera = Camera.main;
-    
-        _canDrag = true;
     }
 
     private void Update()
