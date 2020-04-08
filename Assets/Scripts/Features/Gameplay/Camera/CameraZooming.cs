@@ -17,7 +17,6 @@ public class CameraZooming : MonoBehaviour
     private float _minZoomDistanceY;
     private float _maxZoomDistanceY;
 
-    private bool _canZoom = true;
     private bool _isZooming = false;
 
     [SerializeField]
@@ -27,7 +26,8 @@ public class CameraZooming : MonoBehaviour
     [SerializeField]
     private float _maxZoomDistance = 5.0f;
 
-
+    [SerializeField]
+    private bool _canZoom = false;
 
     private void Start()
     {
