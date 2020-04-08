@@ -14,7 +14,7 @@ public static class WindowApi
 	public delegate void GameObjectListEvent(List<GameObject> value);
 
 	/// <summary>
-	/// An event for when a window should be opened;
+	/// An event for when a window should be opened.
 	/// </summary>
 	public static event GameObjectEvent OnWindowOpen;
 
