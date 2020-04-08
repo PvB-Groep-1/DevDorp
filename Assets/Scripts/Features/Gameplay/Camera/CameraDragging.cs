@@ -13,12 +13,14 @@ public class CameraDragging : MonoBehaviour
 
     private Camera _camera;
 
-    //private Boundary2D _boundary; 
-
     private Vector3 _previousPosition;
     private Vector3 _touchOrigin;
 
     private bool _isDragging;
+
+    [Tooltip("The boundaries of the Camera movement")]
+    [SerializeField]
+    private Boundary2D _boundary;
 
     [Tooltip("The speed of the camera dragging, also affects movement by keyboard.")]
     [SerializeField]
@@ -75,6 +77,8 @@ public class CameraDragging : MonoBehaviour
 
             transform.position += newPosition;
 
+            ClampToBounds();
+
 #endif
 
         }
@@ -114,8 +118,6 @@ public class CameraDragging : MonoBehaviour
                 _previousPosition.z + -newPosition.y * _draggingSpeedMultiplier * 10
             );
 
-            ClampToBounds();
-
             // Save the updated position as new origin position
             SaveOriginPositions();
         }
@@ -137,7 +139,13 @@ public class CameraDragging : MonoBehaviour
     /// </summary>
     public void ClampToBounds()
     {
+        Vector2 newPosition = _boundary.Clamp(transform.position.x, transform.position.z);
 
+        transform.position = new Vector3(
+            newPosition.x,
+            transform.position.y,
+            newPosition.y
+        );
     }
 
     /// <summary>
