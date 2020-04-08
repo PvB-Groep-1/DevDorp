@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using CM.Events;
 
-// <summary>
-// Controls the 2 dimensional movement of the Camera.
-// </summary>
-
+/// <summary>
+/// Controls the 2 dimensional movement of the Camera.
+/// </summary>
 public class CameraDragging : MonoBehaviour
 {
+    /// <summary>
+    /// A simple event to call when the camera is being moved.
+    /// </summary>
+    public event SimpleEvent OnDragging;
+
     private Camera _camera;
 
     //private Boundary2D _boundary; 
@@ -17,28 +21,30 @@ public class CameraDragging : MonoBehaviour
     private bool _isDragging;
     private bool _canDrag;
 
-    private float _draggingSpeedMultiplier;
-    private float _draggingThreshold;
+    [Tooltip("The speed of the camera dragging, also affects movement by keyboard.")]
+    [SerializeField]
+    private float _draggingSpeedMultiplier = 1;
 
-    public event SimpleEvent OnDragging;
+    [Tooltip("The threshold for the camera dragging. If the mouse movement is bigger than the threshold, begin dragging.")]
+    [SerializeField]
+    private float _draggingThreshold = 0.001f;
 
-    private void Awake()
-    {}
 
     private void Start()
     {
         // Set _camera to the Main Camera.
         _camera = Camera.main;
-
+    
         _canDrag = true;
-        _draggingSpeedMultiplier = 1;
     }
 
     private void Update()
     {
         if (_canDrag)
         {
+
 #if UNITY_EDITOR || UNITY_STANDALONE
+
             // Movement via Dragging
             if (Input.GetMouseButtonDown(0))
                 SaveOriginPositions();
@@ -50,6 +56,7 @@ public class CameraDragging : MonoBehaviour
             {
                 _previousPosition = transform.position;
                 _touchOrigin = _camera.ScreenToViewportPoint(Input.mousePosition);
+                _isDragging = false;
             }
 
             // Movement via Keyboard
@@ -67,7 +74,9 @@ public class CameraDragging : MonoBehaviour
                 newPosition.x += -0.1f * _draggingSpeedMultiplier;
 
             transform.position += newPosition;
+
 #endif
+
         }
     }
 
@@ -76,44 +85,60 @@ public class CameraDragging : MonoBehaviour
         _previousPosition = transform.position;
 
 #if UNITY_EDITOR || UNITY_STANDALONE
+
         _touchOrigin = _camera.ScreenToViewportPoint(Input.mousePosition);
+
 #endif
+
     }
 
     private void MoveCamera()
     {
+        OnDragging?.Invoke();
+
         // Get the new position of the mouse relative to the _touchOrigin.
         Vector3 newPosition;
 
 #if UNITY_EDITOR || UNITY_STANDALONE
+
         newPosition = _camera.ScreenToViewportPoint(Input.mousePosition) - _touchOrigin;
+
 #endif
+        if ((Mathf.Abs(newPosition.x) > _draggingThreshold || Mathf.Abs(newPosition.y) > _draggingThreshold) || _isDragging)
+        {
+            _isDragging = true;
+            // Move the Camera.
+            transform.position = new Vector3(
+                _previousPosition.x + -newPosition.x * _draggingSpeedMultiplier * 10,
+                transform.position.y,
+                _previousPosition.z + -newPosition.y * _draggingSpeedMultiplier * 10
+            );
 
-        // Move the Camera.
-        transform.position = new Vector3(
-            _previousPosition.x + -newPosition.x * _draggingSpeedMultiplier * 10,
-            transform.position.y,
-            _previousPosition.z + -newPosition.y * _draggingSpeedMultiplier * 10
-        );
+            ClampToBounds();
 
-        ClampToBounds();
-
-        // Save the updated position as new origin position
-        SaveOriginPositions();
+            // Save the updated position as new origin position
+            SaveOriginPositions();
+        }
     }
 
     private void OnDestroy()
     {}
 
     private void OnValidate()
-    {}
+    {
+        ClampToBounds();
+    }
 
     private void OnDrawGizmosSelected()
     {}
 
-    // Clamp the Camera to the world bounds.
+    /// <summary>
+    /// Clamp the Camera to the world bounds.
+    /// </summary>
     public void ClampToBounds()
-    {}
+    {
+
+    }
 
     /// <summary>
     /// Enables the dragging of the Camera.
