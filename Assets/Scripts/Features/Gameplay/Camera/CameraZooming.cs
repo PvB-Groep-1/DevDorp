@@ -66,6 +66,9 @@ public class CameraZooming : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Makes sure the zoomed position stays within the min and max zoom distance.
+    /// </summary>
     public void ClampPosition()
     {
         transform.position = new Vector3(
@@ -75,11 +78,17 @@ public class CameraZooming : MonoBehaviour
         );
     }
 
+    /// <summary>
+    /// Enables zooming, this function will be called by CameraZoomingEventSetter.
+    /// </summary>
     public void EnableZooming()
     {
         _canZoom = true;
     }
 
+    /// <summary>
+    /// Disabled zooming, this function will be called by CameraZoomingEventSetter.
+    /// </summary>
     public void DisableZooming()
     {
         _canZoom = false;
