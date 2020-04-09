@@ -33,7 +33,6 @@ public class CameraDragging : MonoBehaviour
     [SerializeField]
     private bool _canDrag = false;
 
-
     private void Start()
     {
         // Set _camera to the Main Camera.
@@ -63,17 +62,12 @@ public class CameraDragging : MonoBehaviour
 
         // Movement via Keyboard
         Vector3 newPosition = new Vector3(0, 0, 0);
-        if (Input.GetKey("up") || Input.GetKey("w"))
-            newPosition.z += 0.1f * _draggingSpeedMultiplier;
+        if (Input.GetAxisRaw("Vertical") != 0)
+            newPosition.z += Input.GetAxisRaw("Vertical")/5 * _draggingSpeedMultiplier;
 
-        if (Input.GetKey("down") || Input.GetKey("s"))
-            newPosition.z += -0.1f * _draggingSpeedMultiplier;
+        if (Input.GetAxisRaw("Horizontal") != 0)
+            newPosition.x += Input.GetAxisRaw("Horizontal")/5 * _draggingSpeedMultiplier;
 
-        if (Input.GetKey("right") || Input.GetKey("d"))
-            newPosition.x += 0.1f * _draggingSpeedMultiplier;
-
-        if (Input.GetKey("left") || Input.GetKey("a"))
-            newPosition.x += -0.1f * _draggingSpeedMultiplier;
 
         transform.position += newPosition;
 
@@ -123,9 +117,6 @@ public class CameraDragging : MonoBehaviour
             SaveOriginPositions();
         }
     }
-
-    private void OnDestroy()
-    {}
 
     private void OnValidate()
     {

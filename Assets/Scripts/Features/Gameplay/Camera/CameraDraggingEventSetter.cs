@@ -32,5 +32,4 @@ public class CameraDraggingEventSetter : MonoBehaviour
             _cameraDragging.DisableDragging();
         };
     }
-
 }

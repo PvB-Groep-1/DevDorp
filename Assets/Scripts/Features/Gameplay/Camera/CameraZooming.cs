@@ -12,22 +12,17 @@ public class CameraZooming : MonoBehaviour
     /// </summary>
     public event SimpleEvent OnZooming;
 
-    private float _minZoomDistanceZ;
-    private float _maxZoomDistanceZ;
-    private float _minZoomDistanceY;
-    private float _maxZoomDistanceY;
-
     private bool _isZooming = false;
 
     [SerializeField]
-    private float _zoomSpeedMultiplier = 0.5f;
+    private float _zoomSpeedMultiplier = 10f;
     [SerializeField]
-    private float _minZoomDistance = 0.0f;
+    private float _minZoomDistance = 30f;
     [SerializeField]
-    private float _maxZoomDistance = 5.0f;
+    private float _maxZoomDistance = 60f;
 
     [SerializeField]
-    private bool _canZoom = false;
+    private bool _canZoom = true;
 
     private void Start()
     {
@@ -41,19 +36,15 @@ public class CameraZooming : MonoBehaviour
 
 #if UNITY_EDITOR || UNITY_STANDALONE
 
-        if (Input.mouseScrollDelta.y != 0)
+        if (Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             _isZooming = true;
-
-            transform.position += new Vector3(
-                0,
-                -Mathf.Sin(transform.rotation.x) * Input.mouseScrollDelta.y * _zoomSpeedMultiplier,
-                Mathf.Cos(transform.rotation.x) * Input.mouseScrollDelta.y * _zoomSpeedMultiplier
-            );
-
             OnZooming?.Invoke();
 
-            ClampPosition();
+            float fov = Camera.main.fieldOfView;
+            fov -= Input.GetAxis("Mouse ScrollWheel") * _zoomSpeedMultiplier;
+            fov = Mathf.Clamp(fov, _minZoomDistance, _maxZoomDistance);
+            Camera.main.fieldOfView = fov;
         }
 
 #endif
@@ -61,33 +52,14 @@ public class CameraZooming : MonoBehaviour
     }
 
     /// <summary>
-    /// Makes sure the zoomed position stays within the min and max zoom distance.
-    /// </summary>
-    public void ClampPosition()
-    {
-        transform.position = new Vector3(
-            transform.position.x,
-            Mathf.Clamp(transform.position.y, _minZoomDistanceY, _maxZoomDistanceY),
-            Mathf.Clamp(transform.position.z, _minZoomDistanceZ, _maxZoomDistanceZ)
-        );
-    }
-
-    /// <summary>
     /// Sets the minimum and maximum zoom distance of the camera.
     /// </summary>
-    /// <param name="min"> The minimal zoom distance relative to the initial camera position (0 means the minimal zoom is the current position). </param>
-    /// <param name="max"> The maximal zoom distance relative to the initial camera position. </param>
+    /// <param name="min"> The minimal field of view (lower means more zoomed in). </param>
+    /// <param name="max"> The maximal field of view (lower means more zoomed in). </param>
     public void SetZoomBoundaries(float min, float max)
     {
         _minZoomDistance = min;
         _maxZoomDistance = max;
-
-        // Makes the min and max zoom level relative to the original camera position.
-        _minZoomDistanceZ = Mathf.Cos(transform.rotation.x) * _minZoomDistance + transform.position.z;
-        _maxZoomDistanceZ = Mathf.Cos(transform.rotation.x) * _maxZoomDistance + transform.position.z;
-
-        _minZoomDistanceY = Mathf.Sin(transform.rotation.x) * _minZoomDistance + transform.position.y;
-        _maxZoomDistanceY = Mathf.Sin(transform.rotation.x) * _maxZoomDistance + transform.position.y;
     }
 
     /// <summary>
