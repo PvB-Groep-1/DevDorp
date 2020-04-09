@@ -107,6 +107,8 @@ public class CameraDragging : MonoBehaviour
         newPosition = _camera.ScreenToViewportPoint(Input.mousePosition) - _touchOrigin;
 
 #endif
+
+        //Checks if the mouse is outside the draggingThreshold
         if ((Mathf.Abs(newPosition.x) > _draggingThreshold || Mathf.Abs(newPosition.y) > _draggingThreshold) || _isDragging)
         {
             _isDragging = true;
@@ -131,7 +133,49 @@ public class CameraDragging : MonoBehaviour
     }
 
     private void OnDrawGizmosSelected()
-    {}
+    {
+        Gizmos.color = new Color32(255,0,0,170);
+
+        // Left boundary.
+        Gizmos.DrawLine(new Vector3(
+            _boundary.min.x,
+            transform.position.y,
+            _boundary.min.y),
+            new Vector3(_boundary.min.x,
+            transform.position.y,
+            _boundary.max.y)
+        );
+
+        // Right boundary.
+        Gizmos.DrawLine(new Vector3(
+            _boundary.max.x,
+            transform.position.y,
+            _boundary.min.y),
+            new Vector3(_boundary.max.x,
+            transform.position.y,
+            _boundary.max.y)
+        );
+
+        // Up boundary.
+        Gizmos.DrawLine(new Vector3(
+            _boundary.min.x,
+            transform.position.y,
+            _boundary.max.y),
+            new Vector3(_boundary.max.x,
+            transform.position.y,
+            _boundary.max.y)
+        );
+
+        // Down boundary.
+        Gizmos.DrawLine(new Vector3(
+            _boundary.min.x,
+            transform.position.y,
+            _boundary.min.y),
+            new Vector3(_boundary.max.x,
+            transform.position.y,
+            _boundary.min.y)
+        );
+    }
 
     /// <summary>
     /// Clamp the Camera to the world bounds.
