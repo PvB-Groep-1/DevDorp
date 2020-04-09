@@ -42,46 +42,45 @@ public class CameraDragging : MonoBehaviour
 
     private void Update()
     {
-        if (_canDrag)
-        {
+        if (!_canDrag)
+            return;
 
 #if UNITY_EDITOR || UNITY_STANDALONE
 
-            // Movement via Dragging
-            if (Input.GetMouseButtonDown(0))
-                SaveOriginPositions();
+        // Movement via Dragging
+        if (Input.GetMouseButtonDown(0))
+            SaveOriginPositions();
 
-            if (Input.GetMouseButton(0))
-                MoveCamera();
+        if (Input.GetMouseButton(0))
+            MoveCamera();
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                _previousPosition = transform.position;
-                _touchOrigin = _camera.ScreenToViewportPoint(Input.mousePosition);
-                _isDragging = false;
-            }
+        if (Input.GetMouseButtonUp(0))
+        {
+            _previousPosition = transform.position;
+            _touchOrigin = _camera.ScreenToViewportPoint(Input.mousePosition);
+            _isDragging = false;
+        }
 
-            // Movement via Keyboard
-            Vector3 newPosition = new Vector3(0, 0, 0);
-            if (Input.GetKey("up") || Input.GetKey("w"))
-                newPosition.z += 0.1f * _draggingSpeedMultiplier;
+        // Movement via Keyboard
+        Vector3 newPosition = new Vector3(0, 0, 0);
+        if (Input.GetKey("up") || Input.GetKey("w"))
+            newPosition.z += 0.1f * _draggingSpeedMultiplier;
 
-            if (Input.GetKey("down") || Input.GetKey("s"))
-                newPosition.z += -0.1f * _draggingSpeedMultiplier;
+        if (Input.GetKey("down") || Input.GetKey("s"))
+            newPosition.z += -0.1f * _draggingSpeedMultiplier;
 
-            if (Input.GetKey("right") || Input.GetKey("d"))
-                newPosition.x += 0.1f * _draggingSpeedMultiplier;
+        if (Input.GetKey("right") || Input.GetKey("d"))
+            newPosition.x += 0.1f * _draggingSpeedMultiplier;
 
-            if (Input.GetKey("left") || Input.GetKey("a"))
-                newPosition.x += -0.1f * _draggingSpeedMultiplier;
+        if (Input.GetKey("left") || Input.GetKey("a"))
+            newPosition.x += -0.1f * _draggingSpeedMultiplier;
 
-            transform.position += newPosition;
+        transform.position += newPosition;
 
-            ClampToBounds();
+        ClampToBounds();
 
 #endif
 
-        }
     }
 
     private void SaveOriginPositions()
