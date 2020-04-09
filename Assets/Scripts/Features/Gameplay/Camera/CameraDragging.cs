@@ -44,8 +44,6 @@ public class CameraDragging : MonoBehaviour
         if (!_canDrag)
             return;
 
-#if UNITY_EDITOR || UNITY_STANDALONE
-
         // Movement via Dragging
         if (Input.GetMouseButtonDown(0))
             SaveOriginPositions();
@@ -72,21 +70,13 @@ public class CameraDragging : MonoBehaviour
         transform.position += newPosition;
 
         ClampToBounds();
-
-#endif
-
     }
 
     private void SaveOriginPositions()
     {
         _previousPosition = transform.position;
 
-#if UNITY_EDITOR || UNITY_STANDALONE
-
         _touchOrigin = _camera.ScreenToViewportPoint(Input.mousePosition);
-
-#endif
-
     }
 
     private void MoveCamera()
@@ -96,11 +86,7 @@ public class CameraDragging : MonoBehaviour
         // Get the new position of the mouse relative to the _touchOrigin.
         Vector3 newPosition;
 
-#if UNITY_EDITOR || UNITY_STANDALONE
-
         newPosition = _camera.ScreenToViewportPoint(Input.mousePosition) - _touchOrigin;
-
-#endif
 
         //Checks if the mouse is outside the draggingThreshold
         if ((Mathf.Abs(newPosition.x) > _draggingThreshold || Mathf.Abs(newPosition.y) > _draggingThreshold) || _isDragging)

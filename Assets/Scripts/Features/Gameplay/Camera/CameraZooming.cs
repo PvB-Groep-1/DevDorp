@@ -34,8 +34,6 @@ public class CameraZooming : MonoBehaviour
         if (!_canZoom)
             return;
 
-#if UNITY_EDITOR || UNITY_STANDALONE
-
         if (Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             _isZooming = true;
@@ -46,9 +44,6 @@ public class CameraZooming : MonoBehaviour
             fov = Mathf.Clamp(fov, _minZoomDistance, _maxZoomDistance);
             Camera.main.fieldOfView = fov;
         }
-
-#endif
-
     }
 
     /// <summary>
