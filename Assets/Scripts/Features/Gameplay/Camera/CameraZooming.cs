@@ -31,12 +31,7 @@ public class CameraZooming : MonoBehaviour
 
     private void Start()
     {
-        // Makes the min and max zoom level relative to the original camera position.
-        _minZoomDistanceZ = Mathf.Cos(transform.rotation.x) * _minZoomDistance + transform.position.z;
-        _maxZoomDistanceZ = Mathf.Cos(transform.rotation.x) * _maxZoomDistance + transform.position.z;
-
-        _minZoomDistanceY = Mathf.Sin(transform.rotation.x) * _minZoomDistance + transform.position.y;
-        _maxZoomDistanceY = Mathf.Sin(transform.rotation.x) * _maxZoomDistance + transform.position.y;
+        SetZoomBoundaries(_minZoomDistance, _maxZoomDistance);
     }
 
     private void Update()
@@ -75,6 +70,24 @@ public class CameraZooming : MonoBehaviour
             Mathf.Clamp(transform.position.y, _minZoomDistanceY, _maxZoomDistanceY),
             Mathf.Clamp(transform.position.z, _minZoomDistanceZ, _maxZoomDistanceZ)
         );
+    }
+
+    /// <summary>
+    /// Sets the minimum and maximum zoom distance of the camera.
+    /// </summary>
+    /// <param name="min"> The minimal zoom distance relative to the initial camera position (0 means the minimal zoom is the current position). </param>
+    /// <param name="max"> The maximal zoom distance relative to the initial camera position. </param>
+    public void SetZoomBoundaries(float min, float max)
+    {
+        _minZoomDistance = min;
+        _maxZoomDistance = max;
+
+        // Makes the min and max zoom level relative to the original camera position.
+        _minZoomDistanceZ = Mathf.Cos(transform.rotation.x) * _minZoomDistance + transform.position.z;
+        _maxZoomDistanceZ = Mathf.Cos(transform.rotation.x) * _maxZoomDistance + transform.position.z;
+
+        _minZoomDistanceY = Mathf.Sin(transform.rotation.x) * _minZoomDistance + transform.position.y;
+        _maxZoomDistanceY = Mathf.Sin(transform.rotation.x) * _maxZoomDistance + transform.position.y;
     }
 
     /// <summary>
