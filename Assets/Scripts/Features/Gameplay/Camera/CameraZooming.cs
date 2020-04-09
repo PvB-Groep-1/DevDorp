@@ -41,29 +41,28 @@ public class CameraZooming : MonoBehaviour
 
     private void Update()
     {
-        if (_canZoom)
-        {
+        if (!_canZoom)
+            return;
 
 #if UNITY_EDITOR || UNITY_STANDALONE
 
-            if (Input.mouseScrollDelta.y != 0)
-            {
-                _isZooming = true;
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            _isZooming = true;
 
-                transform.position += new Vector3(
-                    0,
-                    -Mathf.Sin(transform.rotation.x) * Input.mouseScrollDelta.y * _zoomSpeedMultiplier,
-                    Mathf.Cos(transform.rotation.x) * Input.mouseScrollDelta.y * _zoomSpeedMultiplier
-                );
+            transform.position += new Vector3(
+                0,
+                -Mathf.Sin(transform.rotation.x) * Input.mouseScrollDelta.y * _zoomSpeedMultiplier,
+                Mathf.Cos(transform.rotation.x) * Input.mouseScrollDelta.y * _zoomSpeedMultiplier
+            );
 
-                OnZooming?.Invoke();
+            OnZooming?.Invoke();
 
-                ClampPosition();
-            }
+            ClampPosition();
+        }
 
 #endif
 
-        }
     }
 
     /// <summary>

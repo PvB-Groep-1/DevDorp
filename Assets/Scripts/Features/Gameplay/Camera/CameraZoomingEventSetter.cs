@@ -11,6 +11,7 @@ public class CameraZoomingEventSetter : MonoBehaviour
     private void Awake()
     {
         _cameraZooming = GetComponent<CameraZooming>();
+
         WorldApi.OnWorldLoad += () =>
         {
             _cameraZooming.EnableZooming();
