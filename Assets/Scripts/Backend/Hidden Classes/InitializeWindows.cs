@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Runtime.CompilerServices;
 using System;
 
 /// <summary>
@@ -8,11 +7,6 @@ using System;
 public class InitializeWindows : MonoBehaviour
 {
 	[SerializeField] private Window[] _windows;
-
-	private void Awake()
-	{
-		RuntimeHelpers.RunClassConstructor(typeof(OpenCloseWindow).TypeHandle);
-	}
 
 	private void Start()
 	{
