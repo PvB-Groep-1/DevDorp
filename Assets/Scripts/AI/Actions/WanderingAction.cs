@@ -58,7 +58,6 @@ public class WanderingAction : Action
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, 50, NavMesh.AllAreas);
 
-        Vector3 destination = hit.position;
-        return destination;
+        return hit.position;
     }
 }
