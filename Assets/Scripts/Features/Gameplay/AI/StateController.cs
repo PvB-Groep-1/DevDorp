@@ -73,7 +73,10 @@ public class StateController : MonoBehaviour
         {
             Gizmos.color = _currentState.gizmoColor;
             Gizmos.DrawWireCube(transform.position, _renderer.bounds.size);
-        }
+
+			Gizmos.color = _currentState.gizmoColor;
+			Gizmos.DrawWireSphere(targetDestination, 0.5f);
+		}
     }
 
 #endif
