@@ -51,12 +51,11 @@ public class WanderingAction : Action
     // This Vector function returns a random Vector3 location.
     private Vector3 GetRandomDestination(StateController sc)
     {
-        Vector3 randomDirection = Random.insideUnitSphere * 50;
+        Vector3 randomDirection = Random.insideUnitSphere * 20;
 
         randomDirection += sc.gameObject.transform.position;
 
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, 50, NavMesh.AllAreas);
+        NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 20, NavMesh.AllAreas);
 
         return hit.position;
     }

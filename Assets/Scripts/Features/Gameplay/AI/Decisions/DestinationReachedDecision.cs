@@ -10,6 +10,10 @@ public class DestinationReachedDecision : Decision
     // Reference to the NavMeshAgent component.
     private NavMeshAgent _navMeshAgent;
 
+    // The chance for the state to change to a different state.
+    [SerializeField][Range(0,100)]
+    private int _changeStateChance = 50;
+
     /// <summary>
     /// This function makes the decision if its true or false.
     /// </summary>
@@ -37,9 +41,9 @@ public class DestinationReachedDecision : Decision
     // This boolean function returns either true or false depending on which one is randomly chosen.
     private bool ChooseRandomState()
     {
-        float random = Random.Range(-1, 1);
+        int random = Random.Range(0, 100);
 
-        if (random >= 0)
+        if (random <= _changeStateChance)
         {
             _navMeshAgent.isStopped = true;
             return true;
