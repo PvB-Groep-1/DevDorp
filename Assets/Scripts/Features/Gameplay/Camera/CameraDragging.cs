@@ -104,6 +104,40 @@ public class CameraDragging : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Clamp the Camera to the world bounds.
+    /// </summary>
+    public void ClampToBounds()
+    {
+        Vector2 newPosition = _boundary.Clamp(transform.position.x, transform.position.z);
+
+        transform.position = new Vector3(
+            newPosition.x,
+            transform.position.y,
+            newPosition.y
+        );
+    }
+
+    /// <summary>
+    /// Enables the dragging of the Camera.
+    /// </summary>
+    public void EnableDragging()
+    {
+        _canDrag = true;
+    }
+
+    /// <summary>
+    /// Disables the dragging of the Camera.
+    /// Also stops the Camera if it is currently being dragged.
+    /// </summary>
+    public void DisableDragging()
+    {
+        _canDrag = false;
+        _isDragging = false;
+    }
+
+    #region Editor Region
+
     private void OnValidate()
     {
         ClampToBounds();
@@ -111,7 +145,7 @@ public class CameraDragging : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = new Color32(255,0,0,170);
+        Gizmos.color = new Color32(255, 0, 0, 170);
 
         // Left boundary.
         Gizmos.DrawLine(new Vector3(
@@ -154,35 +188,6 @@ public class CameraDragging : MonoBehaviour
         );
     }
 
-    /// <summary>
-    /// Clamp the Camera to the world bounds.
-    /// </summary>
-    public void ClampToBounds()
-    {
-        Vector2 newPosition = _boundary.Clamp(transform.position.x, transform.position.z);
+    #endregion
 
-        transform.position = new Vector3(
-            newPosition.x,
-            transform.position.y,
-            newPosition.y
-        );
-    }
-
-    /// <summary>
-    /// Enables the dragging of the Camera.
-    /// </summary>
-    public void EnableDragging()
-    {
-        _canDrag = true;
-    }
-
-    /// <summary>
-    /// Disables the dragging of the Camera.
-    /// Also stops the Camera if it is currently being dragged.
-    /// </summary>
-    public void DisableDragging()
-    {
-        _canDrag = false;
-        _isDragging = false;
-    }
 }
