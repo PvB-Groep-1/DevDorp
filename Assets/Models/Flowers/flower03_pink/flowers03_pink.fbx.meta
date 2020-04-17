@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 66039a78646d04ff5b5b328cfd687a34
+guid: 6e3be4bdb8607420c9dddd3ba73bdbde
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: flower01_pink
-    second: {fileID: 2100000, guid: 30be5644a7e864881a46a4f176a62351, type: 2}
+      name: flower03_pink
+    second: {fileID: 2100000, guid: 8e09963d028c4426fa47eb4e567ca6b1, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
