@@ -3,6 +3,8 @@
 [RequireComponent(typeof(Collider2D))]
 public class SnapPoint : MonoBehaviour
 {
+	public ProgrammableBlock ProgrammableBlock { get => _programmableBlock; }
+
 	[SerializeField]
 	private ProgrammableBlock _programmableBlock;
 
@@ -11,9 +13,9 @@ public class SnapPoint : MonoBehaviour
 		if (other.tag != "SnapPoint")
 			return;
 
-		if (!_programmableBlock.IsLockedToMouse)
+		if (!ProgrammableBlock.IsLockedToMouse)
 			return;
 
-		_programmableBlock.SnapTo(transform.position, other.transform.position);
+		ProgrammableBlock.SnapTo(this, other.GetComponent<SnapPoint>());
 	}
 }

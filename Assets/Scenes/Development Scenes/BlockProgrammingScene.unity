@@ -460,6 +460,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af6a145f4bda50439c9038a753bec81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _snapPoints:
+    left: {fileID: 0}
+    right: {fileID: 550881658}
+    up: {fileID: 0}
+    down: {fileID: 0}
   _lockToMouse: 0
   _snapThreshold: 65
 --- !u!61 &601748508
@@ -733,6 +738,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af6a145f4bda50439c9038a753bec81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _snapPoints:
+    left: {fileID: 507076951}
+    right: {fileID: 0}
+    up: {fileID: 0}
+    down: {fileID: 0}
   _lockToMouse: 0
   _snapThreshold: 65
 --- !u!1 &1713558847
