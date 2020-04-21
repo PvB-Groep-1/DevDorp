@@ -9,6 +9,8 @@ public class SpawnObject : Command
     // The object that has to be spawned.
     private GameObject _building    = null;
 
+    private GameObject _newObject = null;
+
     // X position for the object that has to be destroyed.
     private int _xPos             = 0;
     // Z position for the object that has to be destroyed.
@@ -46,18 +48,24 @@ public class SpawnObject : Command
     // This function spawns the object on the given position.
     private void PlaceBuilding()
     {
-        if (_building)
-        {
-            Vector3 spawnPoint = new Vector3(_xPos, 0, _zPos);
-            var hitCollider = Physics.OverlapBox(spawnPoint, Vector3.one / 4);
+        if (!_building)
+            return;
+        
+        int buildingLayerMask = 1 << LayerMask.NameToLayer("Building");
 
-            if(hitCollider.Length > 0)
-            {
-                // Show to player that is not possible because space is occupied
-                return;
-            }
-            else
-                Object.Instantiate(_building, new Vector3(_xPos, 0, _zPos), Quaternion.identity);
+        Vector3 spawnPoint = new Vector3(_xPos, 0, _zPos);
+        var hitCollider = Physics.OverlapBox(spawnPoint, Vector3.one / 4, Quaternion.identity, buildingLayerMask);
+
+        if (hitCollider.Length > 0)
+        {
+            // Show to player that is not possible because space is occupied
+            return;
         }
+        else {
+            _newObject = Object.Instantiate(_building, new Vector3(_xPos, 0, _zPos), Quaternion.identity);
+
+            _newObject.layer = LayerMask.NameToLayer("Building");
+        }
+        
     }
 }
