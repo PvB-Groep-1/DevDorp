@@ -41,8 +41,7 @@ public class DestroyObject : Command
     // This function destroys the object on the given position.
     private void RemoveObject()
     {
-        int buildingLayerId = 8;
-        int buildingLayerMask = 1 << buildingLayerId;
+        int buildingLayerMask = 1 << LayerMask.NameToLayer("Building");
 
         Vector3 destroyPoint = new Vector3(_xPos, 0, _zPos);
         var hitCollider = Physics.OverlapBox(destroyPoint, Vector3.one / 4, Quaternion.identity, buildingLayerMask);
