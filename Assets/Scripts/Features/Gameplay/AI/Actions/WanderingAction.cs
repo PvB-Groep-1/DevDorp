@@ -19,7 +19,9 @@ public class WanderingAction : Action
     /// <param name="sc">Reference to the brain of the AI(State Controller class).</param>
     public override void Act(StateController sc)
     {
-        if(_navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid || _navMeshAgent.remainingDistance < .1f)
+        Debug.Log(_navMeshAgent.hasPath);
+
+        if(_navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid || _navMeshAgent.remainingDistance < .3f)
         {
             _targetDestination = GetRandomDestination(sc);
             SetDesination(sc);
