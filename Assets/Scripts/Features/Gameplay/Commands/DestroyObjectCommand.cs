@@ -4,7 +4,7 @@ using CM.Patterns.Command;
 /// <summary>
 /// Destroys object on the given position.
 /// </summary>
-public class DestroyObject : Command
+public class DestroyObjectCommand : Command
 {
     // X position for the object that has to be destroyed.
     private int _xPos = 0;

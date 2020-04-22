@@ -1587,5 +1587,10 @@ PrefabInstance:
       propertyPath: _boundary.max.y
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 8238154943072397144, guid: ccd0a4553623a354d8462ef4be9a3af7,
+        type: 3}
+      propertyPath: _draggingSpeedMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccd0a4553623a354d8462ef4be9a3af7, type: 3}

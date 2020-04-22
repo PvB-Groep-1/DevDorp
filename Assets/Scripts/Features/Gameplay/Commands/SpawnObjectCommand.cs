@@ -4,7 +4,7 @@ using CM.Patterns.Command;
 /// <summary>
 /// Spawns object on the given position.
 /// </summary>
-public class SpawnObject : Command
+public class SpawnObjectCommand : Command
 {
     // The object that has to be spawned.
     private GameObject _building    = null;
