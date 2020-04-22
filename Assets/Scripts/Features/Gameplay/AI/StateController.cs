@@ -63,7 +63,8 @@ public class StateController : MonoBehaviour
 
     private void OnValidate()
     {
-        _renderer = GetComponent<Renderer>();
+        if(GetComponent<Renderer>())
+            _renderer = GetComponent<Renderer>();
     }
 
     // Display a box around the object to debug in which state the object is.
@@ -71,8 +72,16 @@ public class StateController : MonoBehaviour
     {
         if (_currentState)
         {
-            Gizmos.color = _currentState.gizmoColor;
-            Gizmos.DrawWireCube(transform.position, _renderer.bounds.size);
+            if (_renderer)
+            {
+                Gizmos.color = _currentState.gizmoColor;
+                Gizmos.DrawWireCube(transform.position, _renderer.bounds.size);
+            }
+            else
+            {
+                Gizmos.color = _currentState.gizmoColor;
+                Gizmos.DrawWireCube(transform.position, transform.localScale);
+            }
 
 			Gizmos.color = _currentState.gizmoColor;
 			Gizmos.DrawWireSphere(targetDestination, 0.5f);

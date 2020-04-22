@@ -19,9 +19,7 @@ public class WanderingAction : Action
     /// <param name="sc">Reference to the brain of the AI(State Controller class).</param>
     public override void Act(StateController sc)
     {
-        Debug.Log(_navMeshAgent.hasPath);
-
-        if(_navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid || _navMeshAgent.remainingDistance < .3f)
+        if(_navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid || _navMeshAgent.remainingDistance < .3f || !_navMeshAgent.hasPath)
         {
             _targetDestination = GetRandomDestination(sc);
             SetDesination(sc);
@@ -36,6 +34,8 @@ public class WanderingAction : Action
     /// <param name="sc">Reference to the brain of the AI(State Controller class).</param>
     public override void OnActionStart(StateController sc)
     {
+        sc.gameObject.GetComponent<Animator>().Play("Walk");
+
         _navMeshAgent = sc.navMeshAgent;
         _navMeshAgent.isStopped = false;
 
