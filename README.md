@@ -1,3 +1,3 @@
-# PvB-Groep-1
+# DevDorp v0.1.0
 
-[Link to the Documentation](https://koensanderse.nl/PVB1-Docs/index.html)
+[DevDorp API](https://koensanderse.nl/PVB1-Docs/index.html)
