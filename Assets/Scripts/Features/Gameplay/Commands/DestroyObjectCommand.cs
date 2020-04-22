@@ -16,7 +16,7 @@ public class DestroyObjectCommand : Command
     /// </summary>
     /// <param name="xPos">Takes in int variable for the X position on which the object has to be destroyed.</param>
     /// <param name="zPos">Takes in int variable for the Z position on which the object has to be destroyed.</param>
-    public DestroyObject(int xPos, int zPos)
+    public DestroyObjectCommand(int xPos, int zPos)
     {
         _xPos = xPos;
         _zPos = zPos;

@@ -22,7 +22,7 @@ public class SpawnObjectCommand : Command
     /// <param name="building">Takes in gameobject reference for the object that has to be spawned.</param>
     /// <param name="xPos">Takes in int variable for the X position on which the object has to be spawned.</param>
     /// <param name="zPos">Takes in int variable for the Z position on which the object has to be spawned.</param>
-    public SpawnObject(GameObject building, int xPos, int zPos)
+    public SpawnObjectCommand(GameObject building, int xPos, int zPos)
     {
         _building = building;
         _xPos = xPos;
