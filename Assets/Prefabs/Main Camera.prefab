@@ -119,7 +119,7 @@ MonoBehaviour:
     min: {x: -10, y: -10}
     max: {x: 10, y: 10}
   _draggingSpeedMultiplier: 1
-  _draggingThreshold: 0.001
+  _draggingThreshold: 0.01
   _canDrag: 1
 --- !u!114 &8238154943072397143
 MonoBehaviour:
