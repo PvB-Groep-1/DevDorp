@@ -27,12 +27,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 0}
+  animation: {fileID: 0}
   targetDestination: {x: 0, y: 0, z: 0}
   _currentState: {fileID: 11400000, guid: e69a67140ea07e349851c7c91f00f612, type: 2}
-  _IdleAnimation: {fileID: -5716681864270162303, guid: 7c08782e9ec514246ad2459151ad9f08,
-    type: 3}
-  _WalkAnimation: {fileID: -5716681864270162303, guid: 61a717b63ea5443b5b994e2ba6b775b8,
-    type: 3}
 --- !u!195 &1807542816
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -55,25 +52,24 @@ NavMeshAgent:
   m_BaseOffset: 1.0000001
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!95 &1807542818
-Animator:
-  serializedVersion: 3
+--- !u!111 &965613491
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3282127517334239281}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c791979033bdb2640b8e33853245e5ce, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08,
+    type: 3}
+  m_Animations:
+  - {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08, type: 3}
+  - {fileID: 1827226128182048838, guid: 61a717b63ea5443b5b994e2ba6b775b8, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &6822276686129832248
 PrefabInstance:
   m_ObjectHideFlags: 0
