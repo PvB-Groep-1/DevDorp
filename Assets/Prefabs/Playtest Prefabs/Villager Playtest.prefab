@@ -14,6 +14,24 @@ CapsuleCollider:
   m_Height: 3.411457
   m_Direction: 1
   m_Center: {x: 0, y: 1.7337322, z: 0}
+--- !u!111 &965613491
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282127517334239281}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08,
+    type: 3}
+  m_Animations:
+  - {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08, type: 3}
+  - {fileID: 1827226128182048838, guid: 61a717b63ea5443b5b994e2ba6b775b8, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &1807542815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,7 +58,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -52,24 +70,6 @@ NavMeshAgent:
   m_BaseOffset: 1.0000001
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!111 &965613491
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3282127517334239281}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08,
-    type: 3}
-  m_Animations:
-  - {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08, type: 3}
-  - {fileID: 1827226128182048838, guid: 61a717b63ea5443b5b994e2ba6b775b8, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &6822276686129832248
 PrefabInstance:
   m_ObjectHideFlags: 0
