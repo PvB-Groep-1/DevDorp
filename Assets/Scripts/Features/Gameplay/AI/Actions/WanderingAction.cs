@@ -34,7 +34,7 @@ public class WanderingAction : Action
     /// <param name="sc">Reference to the brain of the AI(State Controller class).</param>
     public override void OnActionStart(StateController sc)
     {
-        sc.gameObject.GetComponent<Animator>().Play("Walk");
+		sc.animation.Play("walk");
 
         _navMeshAgent = sc.navMeshAgent;
         _navMeshAgent.isStopped = false;

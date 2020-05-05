@@ -12,6 +12,15 @@ public class IdleAction : Action
     /// <param name="sc">Reference to the brain of the AI(State Controller class).</param>
     public override void Act(StateController sc)
     {
-        sc.gameObject.GetComponent<Animator>().Play("Idle");
+        
     }
+
+	/// <summary>
+	/// The start function for the state.
+	/// </summary>
+	/// <param name="sc">Reference to the brain of the AI(State Controller class).</param>
+	public override void OnActionStart(StateController sc)
+	{
+		sc.animation.Play("idle");
+	}
 }

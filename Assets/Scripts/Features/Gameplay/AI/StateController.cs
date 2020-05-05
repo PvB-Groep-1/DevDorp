@@ -5,6 +5,7 @@ using UnityEngine;
 /// The controller of the AI, this is the brain that controlls the AI.
 /// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Animation))]
 public class StateController : MonoBehaviour
 {
     /// <summary>
@@ -13,10 +14,16 @@ public class StateController : MonoBehaviour
     [HideInInspector]
     public NavMeshAgent navMeshAgent;
 
-    /// <summary>
-    /// The destination the villager has to reach while in one of the walking states.
-    /// </summary>
-    [HideInInspector]
+	/// <summary>
+	/// A reference to the Animation component, this component has all animations for the villager.
+	/// </summary>
+	[HideInInspector]
+	public new Animation animation;
+
+	/// <summary>
+	/// The destination the villager has to reach while in one of the walking states.
+	/// </summary>
+	[HideInInspector]
     public Vector3 targetDestination;
 
     // The current state in which the AI currently is.
@@ -26,7 +33,8 @@ public class StateController : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-    }
+		animation = GetComponent<Animation>();
+	}
 
     private void Start()
     {
