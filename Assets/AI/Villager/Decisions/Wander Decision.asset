@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1294d1dcd18b74aadd4b97e34889d2, type: 3}
   m_Name: Wander Decision
   m_EditorClassIdentifier: 
-  _changeStateChance: 25
+  _changeStateChance: 50

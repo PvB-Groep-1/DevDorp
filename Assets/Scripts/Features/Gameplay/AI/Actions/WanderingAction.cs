@@ -7,24 +7,18 @@ using UnityEngine.AI;
 [CreateAssetMenu(menuName = "State Machine/Actions/New Wandering Action")]
 public class WanderingAction : Action
 {
-    // Reference to the NavMeshAgent component.
-    private NavMeshAgent _navMeshAgent;
-
-    // The destination the villager has to wander to.
-    private Vector3 _targetDestination;
-
     /// <summary>
     /// The update funtion for the state.
     /// </summary>
     /// <param name="sc">Reference to the brain of the AI(State Controller class).</param>
     public override void Act(StateController sc)
     {
-        if(_navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid || _navMeshAgent.remainingDistance < .3f || !_navMeshAgent.hasPath)
+        if(sc.navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid || sc.navMeshAgent.remainingDistance < .3f || !sc.navMeshAgent.hasPath)
         {
-            _targetDestination = GetRandomDestination(sc);
+            sc.targetDestination = GetRandomDestination(sc);
             SetDesination(sc);
 
-            _navMeshAgent.isStopped = false;
+            sc.navMeshAgent.isStopped = false;
         }
     }
 
@@ -35,19 +29,16 @@ public class WanderingAction : Action
     public override void OnActionStart(StateController sc)
     {
 		sc.animation.Play("walk");
+        sc.navMeshAgent.isStopped = false;
 
-        _navMeshAgent = sc.navMeshAgent;
-        _navMeshAgent.isStopped = false;
-
-        _targetDestination = GetRandomDestination(sc);
+        sc.targetDestination = GetRandomDestination(sc);
         SetDesination(sc);
     }
 
     // This function sets the destination in the NavMeshAgent, this lets the villager know where it has to walk to.
     private void SetDesination(StateController sc)
     {
-        sc.targetDestination = _targetDestination;
-        _navMeshAgent.SetDestination(_targetDestination);
+        sc.navMeshAgent.SetDestination(sc.targetDestination);
     }
 
     // This Vector function returns a random Vector3 location.

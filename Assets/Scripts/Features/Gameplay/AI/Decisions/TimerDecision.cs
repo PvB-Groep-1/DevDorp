@@ -34,6 +34,7 @@ public class TimerDecision : Decision
             return false;
         }
         else
+            _timer = _time;
             return true;
     }
 }

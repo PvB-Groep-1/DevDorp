@@ -7,9 +7,6 @@ using UnityEngine.AI;
 [CreateAssetMenu(menuName = "State Machine/Decisions/New Destination Reached Decision")]
 public class DestinationReachedDecision : Decision
 {
-    // Reference to the NavMeshAgent component.
-    private NavMeshAgent _navMeshAgent;
-
     // The chance for the state to change to a different state.
     [SerializeField][Range(0,100)]
     private int _changeStateChance = 50;
@@ -21,7 +18,7 @@ public class DestinationReachedDecision : Decision
     /// <returns>Returns true or false depending on the decision that has been made.</returns>
     public override bool Decide(StateController sc)
     {
-        if (_navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid || _navMeshAgent.remainingDistance < .1f)
+        if (sc.navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid || sc.navMeshAgent.remainingDistance < .3f)
         {
             return ChooseRandomState();
         }
@@ -29,23 +26,14 @@ public class DestinationReachedDecision : Decision
             return false;
     }
 
-    /// <summary>
-    /// This is the start function for the decision class, this is used to set variables before any decision is going to get made.
-    /// </summary>
-    /// <param name="sc">Takes in the StateController class.</param>
-    public override void OnDecisionStart(StateController sc)
-    {
-        _navMeshAgent = sc.navMeshAgent;
-    }
-
     // This boolean function returns either true or false depending on which one is randomly chosen.
     private bool ChooseRandomState()
     {
+        Debug.Log("yoyo");
         int random = Random.Range(0, 100);
 
         if (random <= _changeStateChance)
         {
-            _navMeshAgent.isStopped = true;
             return true;
         }
         else

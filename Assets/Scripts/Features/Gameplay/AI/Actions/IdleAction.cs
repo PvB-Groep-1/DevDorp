@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// This class controls the idle action.
@@ -12,7 +13,7 @@ public class IdleAction : Action
     /// <param name="sc">Reference to the brain of the AI(State Controller class).</param>
     public override void Act(StateController sc)
     {
-        
+
     }
 
 	/// <summary>
@@ -22,5 +23,8 @@ public class IdleAction : Action
 	public override void OnActionStart(StateController sc)
 	{
 		sc.animation.Play("idle");
-	}
+        sc.navMeshAgent.isStopped = true;
+
+
+    }
 }
