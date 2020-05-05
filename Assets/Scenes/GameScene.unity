@@ -502,6 +502,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1807542816, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2006120874778495522, guid: c12d589a61d8c3f42a3ea34a52026ab3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1029,6 +1033,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1807542816, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2006120874778495522, guid: c12d589a61d8c3f42a3ea34a52026ab3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1391,6 +1399,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1807542816, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2006120874778495522, guid: c12d589a61d8c3f42a3ea34a52026ab3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1647,6 +1659,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1807542816, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2006120874778495522, guid: c12d589a61d8c3f42a3ea34a52026ab3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1829,6 +1845,10 @@ PrefabInstance:
     - target: {fileID: 1807542816, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
       propertyPath: m_Radius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807542816, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2006120874778495522, guid: c12d589a61d8c3f42a3ea34a52026ab3,
         type: 3}
