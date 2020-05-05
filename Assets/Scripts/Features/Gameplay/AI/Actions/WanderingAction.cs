@@ -7,9 +7,6 @@ using UnityEngine.AI;
 [CreateAssetMenu(menuName = "State Machine/Actions/New Wandering Action")]
 public class WanderingAction : Action
 {
-    // The destination the villager has to wander to.
-    private Vector3 _targetDestination;
-
     /// <summary>
     /// The update funtion for the state.
     /// </summary>
@@ -18,7 +15,7 @@ public class WanderingAction : Action
     {
         if(sc.navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid || sc.navMeshAgent.remainingDistance < .3f || !sc.navMeshAgent.hasPath)
         {
-            _targetDestination = GetRandomDestination(sc);
+            sc.targetDestination = GetRandomDestination(sc);
             SetDesination(sc);
 
             sc.navMeshAgent.isStopped = false;
@@ -34,15 +31,14 @@ public class WanderingAction : Action
 		sc.animation.Play("walk");
         sc.navMeshAgent.isStopped = false;
 
-        _targetDestination = GetRandomDestination(sc);
+        sc.targetDestination = GetRandomDestination(sc);
         SetDesination(sc);
     }
 
     // This function sets the destination in the NavMeshAgent, this lets the villager know where it has to walk to.
     private void SetDesination(StateController sc)
     {
-        sc.targetDestination = _targetDestination;
-        sc.navMeshAgent.SetDestination(_targetDestination);
+        sc.navMeshAgent.SetDestination(sc.targetDestination);
     }
 
     // This Vector function returns a random Vector3 location.
