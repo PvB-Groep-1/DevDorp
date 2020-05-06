@@ -4,9 +4,22 @@
 public class SnapPoint : MonoBehaviour
 {
 	public ProgrammableBlock ProgrammableBlock { get => _programmableBlock; }
+	public SnapPoint ConnectedSnapPoint { get; set; }
 
 	[SerializeField]
 	private ProgrammableBlock _programmableBlock;
+
+	private void Awake()
+	{
+		_programmableBlock.OnReleaseSnap += () =>
+		{
+			if (!ConnectedSnapPoint)
+				return;
+
+			ConnectedSnapPoint.ConnectedSnapPoint = null;
+			ConnectedSnapPoint = null;
+		};
+	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
@@ -16,6 +29,23 @@ public class SnapPoint : MonoBehaviour
 		if (!ProgrammableBlock.IsLockedToMouse)
 			return;
 
-		ProgrammableBlock.SnapTo(this, other.GetComponent<SnapPoint>());
+		SnapPoint otherSnapPoint = other.GetComponent<SnapPoint>();
+
+		if (!otherSnapPoint)
+			return;
+
+		if (ProgrammableBlock.SnapTo(this, otherSnapPoint))
+		{
+			ConnectedSnapPoint = otherSnapPoint;
+			otherSnapPoint.ConnectedSnapPoint = this;
+		}
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+
+		if (ConnectedSnapPoint)
+			Gizmos.DrawSphere(transform.position, 5f);
 	}
 }

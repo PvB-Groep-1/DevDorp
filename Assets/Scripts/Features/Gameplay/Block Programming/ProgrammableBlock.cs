@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CM.Events;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
@@ -9,6 +10,16 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 
 	private Vector3 _mouseSnapPoint;
 	private bool _isSnapped = false;
+
+	public enum Direction
+	{
+		Left,
+		Right,
+		Up,
+		Down
+	}
+
+	public event SimpleEvent OnReleaseSnap;
 
 	[SerializeField]
 	private SnapPoints _snapPoints;
@@ -38,20 +49,22 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 		transform.position = Input.mousePosition;
 	}
 
-	private bool CanSnap(SnapPoint snapPoint1, SnapPoint snapPoint2)
+	private bool CanSnapDirection(Direction direction1, Direction direction2)
 	{
-		// Check for left and right snapping points.
-		if (
-			(snapPoint1 == _snapPoints.left && snapPoint2 == snapPoint2.ProgrammableBlock.SnappingPoints.right) ||
-			(snapPoint1 == _snapPoints.right && snapPoint2 == snapPoint2.ProgrammableBlock.SnappingPoints.left)
-		)
+		// Left and Right Direction check.
+		if (direction1 == Direction.Left && direction2 == Direction.Right)
 			return true;
 
-		// Check for up and down snapping points.
-		if (
-			(snapPoint1 == _snapPoints.up && snapPoint2 == snapPoint2.ProgrammableBlock.SnappingPoints.up) ||
-			(snapPoint1 == _snapPoints.down && snapPoint2 == snapPoint2.ProgrammableBlock.SnappingPoints.down)
-		)
+		// Right and Left Direction check.
+		else if (direction1 == Direction.Right && direction2 == Direction.Left)
+			return true;
+
+		// Up and Down Direction check.
+		else if (direction1 == Direction.Up && direction2 == Direction.Down)
+			return true;
+
+		// Down and Up Direction check.
+		else if (direction1 == Direction.Down && direction2 == Direction.Up)
 			return true;
 
 		return false;
@@ -59,6 +72,9 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
+		if (tag == "StartNode")
+			return;
+
 		_lockToMouse = !_lockToMouse;
 		_mouseSnapPoint = transform.position;
 
@@ -80,10 +96,10 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 		}
 	}
 
-	public void SnapTo(SnapPoint referencePoint, SnapPoint snapPoint)
+	public bool SnapTo(SnapPoint referencePoint, SnapPoint snapPoint)
 	{
-		if (!CanSnap(referencePoint, snapPoint))
-			return;
+		if (!CanSnapDirection(_snapPoints.GetSnapPointData(referencePoint).direction, snapPoint.ProgrammableBlock.SnappingPoints.GetSnapPointData(snapPoint).direction))
+			return false;
 
 		Vector3 referenceDistance = referencePoint.transform.position - transform.position;
 
@@ -91,19 +107,89 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 
 		_mouseSnapPoint = Input.mousePosition;
 		_isSnapped = true;
+
+		return true;
 	}
 
 	public void ReleaseSnap()
 	{
 		_isSnapped = false;
+
+		OnReleaseSnap?.Invoke();
 	}
+
+	#region Editor Region
+
+	private void OnValidate()
+	{
+		_snapPoints.SetDefaultDirections();
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.blue;
+
+		if (_isSnapped && IsLockedToMouse)
+			Gizmos.DrawWireSphere(_mouseSnapPoint, _snapThreshold);
+	}
+
+	#endregion
 
 	[System.Serializable]
 	public struct SnapPoints
 	{
-		public SnapPoint left;
-		public SnapPoint right;
-		public SnapPoint up;
-		public SnapPoint down;
+		public SnapPointData left;
+		public SnapPointData right;
+		public SnapPointData up;
+		public SnapPointData down;
+
+		public void SetDefaultDirections()
+		{
+			left.direction = Direction.Left;
+			right.direction = Direction.Right;
+			up.direction = Direction.Up;
+			down.direction = Direction.Down;
+		}
+
+		public SnapPointData GetSnapPointData(SnapPoint snapPoint)
+		{
+			if (snapPoint == left.snapPoint)
+				return left;
+
+			else if (snapPoint == right.snapPoint)
+				return right;
+
+			else if (snapPoint == up.snapPoint)
+				return up;
+
+			else if(snapPoint == down.snapPoint)
+				return down;
+
+			return left;
+		}
+
+		public SnapPointData GetSnapPointData(Direction direction)
+		{
+			switch (direction)
+			{
+				case Direction.Left:
+					return left;
+				case Direction.Right:
+					return right;
+				case Direction.Up:
+					return up;
+				case Direction.Down:
+					return down;
+			}
+
+			return left;
+		}
+	}
+
+	[System.Serializable]
+	public struct SnapPointData
+	{
+		public Direction direction;
+		public SnapPoint snapPoint;
 	}
 }
