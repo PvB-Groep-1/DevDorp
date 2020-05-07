@@ -8,12 +8,11 @@ using UnityEngine;
 public class MainMenuController : MonoBehaviour
 {
     /// <summary>
-    /// This function toggles the visibility for the given gameobject.
+    /// This function toggles the visibility for the exit confirmation window.
     /// </summary>
-    /// <param name="window">Takes in the gameobject of which the visibilty has to be toggled.</param>
-    public void ToggleWindowVisibility(GameObject window)
+    public void OpenExitConfirmationWindow()
     {
-        window.SetActive(!window.activeSelf);
+        WindowApi.OpenWindow(WindowTypes.ExitConfirmation);
     }
 
     /// <summary>
