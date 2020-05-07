@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// This class controls the confirmation quit windows.
+/// </summary>
 public class ConfirmationQuitWindow : MonoBehaviour
 {
     /// <summary>
