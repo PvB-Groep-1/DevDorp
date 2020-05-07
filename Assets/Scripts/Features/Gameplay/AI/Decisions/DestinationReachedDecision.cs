@@ -28,8 +28,7 @@ public class DestinationReachedDecision : Decision
 
     // This boolean function returns either true or false depending on which one is randomly chosen.
     private bool ChooseRandomState()
-    {
-        Debug.Log("yoyo");
+    { 
         int random = Random.Range(0, 100);
 
         if (random <= _changeStateChance)
