@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: huis06_big_MAT
-    second: {fileID: 2100000, guid: 690d164c0012d49f5b3a57b24e435a0d, type: 2}
+    second: {fileID: 2100000, guid: 86345231b66da4682bce027ae10fe87a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
