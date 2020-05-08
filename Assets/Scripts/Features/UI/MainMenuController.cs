@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// This class controls the main menu.
@@ -14,12 +12,12 @@ public class MainMenuController : MonoBehaviour
     {
         WindowApi.OpenWindow(WindowTypes.ExitConfirmation);
     }
-
+    
     /// <summary>
-    /// This function controls everything for closing the game.
+    /// This function loads the main scene in which the player will play the game.
     /// </summary>
-    public void CloseApplication()
+    public void LoadGameScene()
     {
-        Application.Quit();
+        LevelManager.LoadGameLevel();
     }
 }
