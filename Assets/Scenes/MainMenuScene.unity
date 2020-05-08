@@ -350,8 +350,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _windows:
-  - type: 4
-    model: {fileID: 5897419951295911453, guid: 3dfa97cdac5ab814097d0d5e1a1e85af, type: 3}
+  - type: 2
+    model: {fileID: 3627933682876560938, guid: e044d1619e6f51f4188c2d9876e754d1, type: 3}
 --- !u!1 &822037953
 GameObject:
   m_ObjectHideFlags: 0
