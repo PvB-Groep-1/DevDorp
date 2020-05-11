@@ -23,7 +23,7 @@ public sealed class BuildLogic : ExecutionLogic
 		if (_XYLogic.inputFieldX.text == "" || _XYLogic.inputFieldY.text == "")
 			return;
 
-		SpawnObjectCommand command = new SpawnObjectCommand(Properties.buildings[(int)_buildingType], -20 + _XYLogic.x * 10, 5 + _XYLogic.y * 10);
+		SpawnObjectCommand command = new SpawnObjectCommand(Properties.buildings[(int)_buildingType], -15 + _XYLogic.x * 8, 5 + _XYLogic.y * 8);
 		command.Execute();
 	}
 

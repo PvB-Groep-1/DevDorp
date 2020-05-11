@@ -60,6 +60,8 @@ MonoBehaviour:
   _windows:
   - type: 4
     model: {fileID: 640437749434502273, guid: fb65b5d4d94d22d4e87a1426ca9c8c37, type: 3}
+  - type: 2
+    model: {fileID: 3627933682876560938, guid: e044d1619e6f51f4188c2d9876e754d1, type: 3}
 --- !u!114 &2117338005778172871
 MonoBehaviour:
   m_ObjectHideFlags: 0

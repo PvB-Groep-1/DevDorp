@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!208 &-1028423062648238601
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183793888809758200}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 276.94302, y: 232.835, z: 235.96101}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.135, y: 230.089, z: 1.042}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6849683362179708145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77,5 +93,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3b907a4202ec14299b9e197f8f32a3ae,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b907a4202ec14299b9e197f8f32a3ae, type: 3}
+--- !u!1 &3183793888809758200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 3b907a4202ec14299b9e197f8f32a3ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 6849683362179708145}
+  m_PrefabAsset: {fileID: 0}

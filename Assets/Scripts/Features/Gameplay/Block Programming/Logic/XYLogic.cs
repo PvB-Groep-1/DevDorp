@@ -46,6 +46,18 @@ public struct XYLogic
 			inputFieldY.text = tempY.ToString();
 		}
 
+		if (tempX > 8)
+		{
+			tempX = 8;
+			inputFieldX.text = tempX.ToString();
+		}
+
+		if (tempY > 8)
+		{
+			tempY = 8;
+			inputFieldY.text = tempY.ToString();
+		}
+
 		x = tempX;
 		y = tempY;
 	}

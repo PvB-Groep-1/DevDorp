@@ -16,7 +16,7 @@ public sealed class DestroyLogic : ExecutionLogic
 		if (_XYLogic.inputFieldX.text == "" || _XYLogic.inputFieldY.text == "")
 			return;
 
-		DestroyObjectCommand command = new DestroyObjectCommand(-20 + _XYLogic.x * 10, 5 + _XYLogic.y * 10);
+		DestroyObjectCommand command = new DestroyObjectCommand(-15 + _XYLogic.x * 8, 5 + _XYLogic.y * 8);
 		command.Execute();
 	}
 
