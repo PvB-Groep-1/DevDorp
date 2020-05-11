@@ -2,7 +2,7 @@
 using System;
 
 /// <summary>
-/// Sends all windows as type GameObject to the Properties class.
+/// Sends all windows as type GameObject to the WindowApi class.
 /// </summary>
 public class InitializeWindows : MonoBehaviour
 {

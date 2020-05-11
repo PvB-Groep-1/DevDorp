@@ -62,7 +62,7 @@ public class SpawnObjectCommand : Command
             return;
         }
         else {
-            _newObject = Object.Instantiate(_building, new Vector3(_xPos, 0, _zPos), Quaternion.identity);
+            _newObject = Object.Instantiate(_building, new Vector3(_xPos, 0, _zPos), Quaternion.Euler(new Vector3(_building.transform.localEulerAngles.x, 180, _building.transform.localEulerAngles.z)));
 
             _newObject.layer = LayerMask.NameToLayer("Building");
         }
