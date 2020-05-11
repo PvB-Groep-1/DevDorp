@@ -1,16 +1,39 @@
 ﻿using CM.Events;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
+/// <summary>
+/// Represents a code block.
+/// </summary>
 public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 {
+	/// <summary>
+	/// The current ProgrammableBlock attached to the mouse.
+	/// </summary>
 	public static ProgrammableBlock CurrentlyMovingProgrammableBlock { get; private set; }
+
+	/// <summary>
+	/// The snapping points of this block.
+	/// </summary>
 	public SnapPoints SnappingPoints => _snapPoints;
+
+	/// <summary>
+	/// The image of this block.
+	/// </summary>
+	public Image Image => _image;
+
+	/// <summary>
+	/// Returns true if this block is locked to the mouse.
+	/// </summary>
 	public bool IsLockedToMouse => _lockToMouse;
 
 	private Vector3 _mouseSnapPoint;
 	private bool _isSnapped = false;
 
+	/// <summary>
+	/// Represents 4 directions.
+	/// </summary>
 	public enum Direction
 	{
 		Left,
@@ -19,6 +42,9 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 		Down
 	}
 
+	/// <summary>
+	/// An event for when this block is released from another block.
+	/// </summary>
 	public event SimpleEvent OnReleaseSnap;
 
 	[SerializeField]
@@ -29,6 +55,11 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 
 	[SerializeField]
 	private float _snapThreshold = 65f;
+
+	[Header("References")]
+
+	[SerializeField]
+	private Image _image;
 
 	private void Update()
 	{
@@ -70,6 +101,10 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 		return false;
 	}
 
+	/// <summary>
+	/// When you click on this object.
+	/// </summary>
+	/// <param name="eventData">The current data for the pointer.</param>
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		if (tag == "StartNode")
@@ -96,6 +131,12 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 		}
 	}
 
+	/// <summary>
+	/// Snaps this block snapping point to another snapping point.
+	/// </summary>
+	/// <param name="referencePoint">The snapping point from this block.</param>
+	/// <param name="snapPoint">The other snapping point that this block needs to attach to.</param>
+	/// <returns>True if snapping is allowed for the current snapping points.</returns>
 	public bool SnapTo(SnapPoint referencePoint, SnapPoint snapPoint)
 	{
 		if (!CanSnapDirection(_snapPoints.GetSnapPointData(referencePoint).direction, snapPoint.ProgrammableBlock.SnappingPoints.GetSnapPointData(snapPoint).direction))
@@ -111,11 +152,49 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 		return true;
 	}
 
+	/// <summary>
+	/// Releases this block from another block.
+	/// </summary>
 	public void ReleaseSnap()
 	{
 		_isSnapped = false;
 
 		OnReleaseSnap?.Invoke();
+	}
+
+	/// <summary>
+	/// Gets a connected ProgrammableBlock from a given Direction.
+	/// </summary>
+	/// <param name="direction">The direction of the connected block.</param>
+	/// <returns>The connected block in a given Direction.</returns>
+	public ProgrammableBlock GetConnectedProgrammableBlock(Direction direction)
+	{
+		ProgrammableBlock connectedProgrammableBlock = null;
+
+		try
+		{
+			switch (direction)
+			{
+				case Direction.Left:
+					connectedProgrammableBlock = SnappingPoints.left.snapPoint.ConnectedSnapPoint.ProgrammableBlock;
+					break;
+				case Direction.Right:
+					connectedProgrammableBlock = SnappingPoints.right.snapPoint.ConnectedSnapPoint.ProgrammableBlock;
+					break;
+				case Direction.Up:
+					connectedProgrammableBlock = SnappingPoints.up.snapPoint.ConnectedSnapPoint.ProgrammableBlock;
+					break;
+				case Direction.Down:
+					connectedProgrammableBlock = SnappingPoints.down.snapPoint.ConnectedSnapPoint.ProgrammableBlock;
+					break;
+			}
+		}
+		catch
+		{
+			return null;
+		}
+
+		return connectedProgrammableBlock;
 	}
 
 	#region Editor Region
@@ -135,14 +214,35 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 
 	#endregion
 
+	/// <summary>
+	/// Represents all snapping points for this block.
+	/// </summary>
 	[System.Serializable]
 	public struct SnapPoints
 	{
+		/// <summary>
+		/// The snapping point at the left side of this block.
+		/// </summary>
 		public SnapPointData left;
+
+		/// <summary>
+		/// The snapping point at the right side of this block.
+		/// </summary>
 		public SnapPointData right;
+
+		/// <summary>
+		/// The snapping point at the top side of this block.
+		/// </summary>
 		public SnapPointData up;
+
+		/// <summary>
+		/// The snapping point at the bottom side of this block.
+		/// </summary>
 		public SnapPointData down;
 
+		/// <summary>
+		/// Sets the correct directions.
+		/// </summary>
 		public void SetDefaultDirections()
 		{
 			left.direction = Direction.Left;
@@ -151,6 +251,11 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 			down.direction = Direction.Down;
 		}
 
+		/// <summary>
+		/// Gets the SnapPointData for a given SnapPoint.
+		/// </summary>
+		/// <param name="snapPoint">The given SnapPoint to get the SnapPointData from.</param>
+		/// <returns>The SnapPointData for a given SnapPoint.</returns>
 		public SnapPointData GetSnapPointData(SnapPoint snapPoint)
 		{
 			if (snapPoint == left.snapPoint)
@@ -168,6 +273,11 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 			return left;
 		}
 
+		/// <summary>
+		/// Gets the SnapPointData for a given Direction.
+		/// </summary>
+		/// <param name="direction">The given Direction to get the SnapPointData from.</param>
+		/// <returns>The SnapPointData for a given Direction.</returns>
 		public SnapPointData GetSnapPointData(Direction direction)
 		{
 			switch (direction)
@@ -186,10 +296,20 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 		}
 	}
 
+	/// <summary>
+	/// Represents the data for a snapping point.
+	/// </summary>
 	[System.Serializable]
 	public struct SnapPointData
 	{
+		/// <summary>
+		/// The direction for this snapping point.
+		/// </summary>
 		public Direction direction;
+
+		/// <summary>
+		/// The snapping point.
+		/// </summary>
 		public SnapPoint snapPoint;
 	}
 }

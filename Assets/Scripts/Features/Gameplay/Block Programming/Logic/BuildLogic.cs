@@ -1,23 +1,71 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildLogic : ExecutionLogic
+/// <summary>
+/// Represents building logic.
+/// </summary>
+public sealed class BuildLogic : ExecutionLogic
 {
 	[SerializeField]
 	private Dropdown _buildDropdown;
 
+	[SerializeField]
+	private XYLogic _XYLogic;
+
+	[SerializeField]
+	private BuildingTypes _buildingType;
+
+	/// <summary>
+	/// Executes the building logic.
+	/// </summary>
 	public override void Execute()
 	{
-		Debug.Log("test");
+		if (_XYLogic.inputFieldX.text == "" || _XYLogic.inputFieldY.text == "")
+			return;
+
+		SpawnObjectCommand command = new SpawnObjectCommand(Properties.buildings[(int)_buildingType], -20 + _XYLogic.x * 10, 5 + _XYLogic.y * 10);
+		command.Execute();
 	}
 
+	/// <summary>
+	/// Saves values for given input.
+	/// </summary>
 	public void SetValues()
 	{
-		switch (_buildDropdown.itemText.text)
+		switch (_buildDropdown.captionText.text)
 		{
-			case "Huis":
-
+			case "Huis 1":
+				_buildingType = BuildingTypes.House1;
+				break;
+			case "Huis 2":
+				_buildingType = BuildingTypes.House2;
+				break;
+			case "Huis 3":
+				_buildingType = BuildingTypes.House5;
+				break;
+			case "Huis 4":
+				_buildingType = BuildingTypes.House6;
+				break;
+			case "Huis 5":
+				_buildingType = BuildingTypes.House7;
+				break;
+			case "Huis 6":
+				_buildingType = BuildingTypes.House8;
+				break;
+			case "Bakker":
+				_buildingType = BuildingTypes.Bakery;
+				break;
+			case "Flat":
+				_buildingType = BuildingTypes.Flat;
+				break;
+			case "Winkel":
+				_buildingType = BuildingTypes.Store;
+				break;
+			case "Stadhuis":
+				_buildingType = BuildingTypes.Townhall;
 				break;
 		}
+
+		_XYLogic.SetValues();
 	}
 }

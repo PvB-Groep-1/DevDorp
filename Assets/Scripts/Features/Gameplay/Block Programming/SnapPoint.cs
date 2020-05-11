@@ -1,9 +1,19 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Represents a 2D snapping point.
+/// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class SnapPoint : MonoBehaviour
 {
+	/// <summary>
+	/// The ProgrammableBlock this snapping point is attached to.
+	/// </summary>
 	public ProgrammableBlock ProgrammableBlock { get => _programmableBlock; }
+
+	/// <summary>
+	/// Another snapping point that this snapping point is attached to.
+	/// </summary>
 	public SnapPoint ConnectedSnapPoint { get; set; }
 
 	[SerializeField]
@@ -32,6 +42,9 @@ public class SnapPoint : MonoBehaviour
 		SnapPoint otherSnapPoint = other.GetComponent<SnapPoint>();
 
 		if (!otherSnapPoint)
+			return;
+
+		if (otherSnapPoint.ConnectedSnapPoint)
 			return;
 
 		if (ProgrammableBlock.SnapTo(this, otherSnapPoint))

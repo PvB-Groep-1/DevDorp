@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-public class IsPlaceEmptyLogic : DecisionLogic
+/// <summary>
+/// Represents a decision for if a place is empty.
+/// </summary>
+public sealed class IsPlaceEmptyLogic : DecisionLogic
 {
 	[SerializeField]
-	private InputField _inputFieldX;
+	private XYLogic _XYLogic;
 
-	[SerializeField]
-	private InputField _inputFieldY;
-
-	[SerializeField]
-	private int _x;
-
-	[SerializeField]
-	private int _y;
-
+	/// <summary>
+	/// Decides if the place is empty.
+	/// </summary>
+	/// <returns>True if there is no collider detected on given location.</returns>
 	public override bool Decide()
 	{
-		Vector3 spawnPoint = new Vector3(_x, 0, _y);
+		if (_XYLogic.inputFieldX.text == "" || _XYLogic.inputFieldY.text == "")
+			return false;
+
+		Vector3 spawnPoint = new Vector3(_XYLogic.x, 0, _XYLogic.y);
 		Collider[] hitCollider = Physics.OverlapBox(spawnPoint, Vector3.one / 4);
 
 		if (hitCollider.Length > 0)
@@ -26,12 +26,11 @@ public class IsPlaceEmptyLogic : DecisionLogic
 		return true;
 	}
 
+	/// <summary>
+	/// Saves values for given input.
+	/// </summary>
 	public void SetValues()
 	{
-		int.TryParse(_inputFieldX.text, out int x);
-		int.TryParse(_inputFieldY.text, out int y);
-
-		_x = x;
-		_y = y;
+		_XYLogic.SetValues();
 	}
 }
