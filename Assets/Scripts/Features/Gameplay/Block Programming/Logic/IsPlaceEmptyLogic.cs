@@ -17,7 +17,7 @@ public sealed class IsPlaceEmptyLogic : DecisionLogic
 		if (_XYLogic.inputFieldX.text == "" || _XYLogic.inputFieldY.text == "")
 			return false;
 
-		Vector3 spawnPoint = new Vector3(_XYLogic.x, 0, _XYLogic.y);
+		Vector3 spawnPoint = new Vector3(-15 + _XYLogic.x * 9, 0, 5 + _XYLogic.y * 9);
 		Collider[] hitCollider = Physics.OverlapBox(spawnPoint, Vector3.one / 4);
 
 		if (hitCollider.Length > 0)
