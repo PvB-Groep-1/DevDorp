@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 801148429}
   - component: {fileID: 801148430}
   - component: {fileID: 801148431}
+  - component: {fileID: 801148432}
   m_Layer: 0
   m_Name: GameInitializer
   m_TagString: Untagged
@@ -352,6 +353,41 @@ MonoBehaviour:
   _windows:
   - type: 2
     model: {fileID: 3627933682876560938, guid: e044d1619e6f51f4188c2d9876e754d1, type: 3}
+  - type: 4
+    model: {fileID: 640437749434502273, guid: fb65b5d4d94d22d4e87a1426ca9c8c37, type: 3}
+--- !u!114 &801148432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801148428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b442b452b32833f41bbff4dde6ac0618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildings:
+  - type: 0
+    model: {fileID: 2975483699787452194, guid: b12e06fab7966144fb709a05cf6b126e, type: 3}
+  - type: 1
+    model: {fileID: 3183793888809758200, guid: e87469b5eb06b314c9e3f57b92c3911c, type: 3}
+  - type: 2
+    model: {fileID: 4070223536059829885, guid: ea2cc1f33d8bbc44a98f7a48c8f9af2f, type: 3}
+  - type: 3
+    model: {fileID: 3902871927841933450, guid: 8966140764d53e94e914ec3e973beb17, type: 3}
+  - type: 4
+    model: {fileID: 3780007287909302162, guid: f4cf30ac3608d284db6210f74e5a795c, type: 3}
+  - type: 5
+    model: {fileID: 8740327511346326099, guid: f5a4b5e3508b01b4c89f6627304904c9, type: 3}
+  - type: 6
+    model: {fileID: 56431871799596072, guid: ab8ac90b5f88edf44a216afe09633d58, type: 3}
+  - type: 7
+    model: {fileID: 7121439769501782367, guid: e464d94e55216a640aabf555fa5ac862, type: 3}
+  - type: 8
+    model: {fileID: 3506518322666224469, guid: fae46c6fcd8903347910fb5b0fa3e0b1, type: 3}
+  - type: 9
+    model: {fileID: 5553024514521576506, guid: 426c5302ec37cfc4691bef923bc4851d, type: 3}
 --- !u!1 &822037953
 GameObject:
   m_ObjectHideFlags: 0

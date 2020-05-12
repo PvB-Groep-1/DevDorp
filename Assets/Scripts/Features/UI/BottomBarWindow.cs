@@ -12,4 +12,12 @@ public class BottomBarWindow : MonoBehaviour
 	{
 		WindowApi.OpenWindow(WindowTypes.CodeMenu);
 	}
+
+	/// <summary>
+	/// Opens the main menu scene.
+	/// </summary>
+	public void OpenMainMenu()
+	{
+		LevelManager.LoadMainMenu();
+	}
 }
