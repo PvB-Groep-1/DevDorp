@@ -78,6 +78,11 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 		}
 
 		transform.position = Input.mousePosition;
+		transform.position = new Vector3(
+			Mathf.Clamp(transform.position.x, 410, 1520),
+			Mathf.Clamp(transform.position.y, 430, 850),
+			transform.position.z
+		);
 	}
 
 	private bool CanSnapDirection(Direction direction1, Direction direction2)
