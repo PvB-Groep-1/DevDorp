@@ -1370,11 +1370,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 965613491, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1807542815, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1807542816, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
       propertyPath: m_BaseOffset
@@ -1382,11 +1382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1807542816, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1807542817, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2006120874778495522, guid: c12d589a61d8c3f42a3ea34a52026ab3,
         type: 3}
