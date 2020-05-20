@@ -7,7 +7,7 @@ public class IngameUIManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateHappinessUI(ResourceManager.TotalHappiness);
+        UpdateHappinessUI(ResourceManager.GetResourceAmount());
     }
 
     private void UpdateHappinessUI(float happiness)
