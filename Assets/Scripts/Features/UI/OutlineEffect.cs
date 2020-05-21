@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// A fade in and out effect for the Outline component.
+/// </summary>
 [RequireComponent(typeof(Outline))]
-public class OutlineEffect : MonoBehaviour
+public sealed class OutlineEffect : MonoBehaviour
 {
 	private Outline _outline;
 	private float _startAlpha;
@@ -11,7 +14,14 @@ public class OutlineEffect : MonoBehaviour
 	private float _currentTime;
 	private bool _destroyAfterFadeOut = false;
 
+	/// <summary>
+	/// The time in seconds to fade the outline in.
+	/// </summary>
 	public float fadeInTime = 1f;
+
+	/// <summary>
+	/// The time in seconds to fade the outline out.
+	/// </summary>
 	public float fadeOutTime = 2f;
 
 	private void Awake()
@@ -35,8 +45,8 @@ public class OutlineEffect : MonoBehaviour
 
 		if (_outline.effectColor.a <= 0 && _destroyAfterFadeOut)
 		{
-			Destroy(_outline);
 			Destroy(this);
+			Destroy(_outline);
 		}
 
 		else if (_outline.effectColor.a >= 1)
@@ -62,6 +72,9 @@ public class OutlineEffect : MonoBehaviour
 		_currentTime = 0;
 	}
 
+	/// <summary>
+	/// Fades the outline out and destroys it.
+	/// </summary>
 	public void FadeOutAndDestroy()
 	{
 		_destroyAfterFadeOut = true;

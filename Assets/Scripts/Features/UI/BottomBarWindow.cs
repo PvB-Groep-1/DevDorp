@@ -7,6 +7,17 @@ using UnityEngine.UI;
 public class BottomBarWindow : MonoBehaviour
 {
 	/// <summary>
+	/// A delegate with a ButtonTypes parameter.
+	/// </summary>
+	/// <param name="value">A ButtonTypes parameter.</param>
+	public delegate void ButtonEvent(ButtonTypes buttonType);
+
+	/// <summary>
+	/// An event for when a button from the ButtonTypes enum is pressed.
+	/// </summary>
+	public event ButtonEvent OnButtonPressed;
+
+	/// <summary>
 	/// All types of buttons in the BottomBarWindow.
 	/// </summary>
 	public enum ButtonTypes
@@ -20,6 +31,19 @@ public class BottomBarWindow : MonoBehaviour
 
 	[SerializeField]
 	private Button _homeButton;
+
+	private void Awake()
+	{
+		_blockButton.onClick.AddListener(delegate
+		{
+			OnButtonPressed?.Invoke(ButtonTypes.BlockButton);
+		});
+
+		_homeButton.onClick.AddListener(delegate
+		{
+			OnButtonPressed?.Invoke(ButtonTypes.HomeButton);
+		});
+	}
 
 	/// <summary>
 	/// Opens the code window.
@@ -118,6 +142,11 @@ public class BottomBarWindow : MonoBehaviour
 		if (!outline)
 			return;
 
-		Destroy(outline);
+		OutlineEffect outlineEffect = outline.GetComponent<OutlineEffect>();
+
+		if (!outlineEffect)
+			return;
+
+		outlineEffect.FadeOutAndDestroy();
 	}
 }

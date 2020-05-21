@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Everything that needs to happen at the start of the game.
 /// </summary>
-public class StartGame : MonoBehaviour
+public sealed class StartGame : MonoBehaviour
 {
 	private int _cameraMovedFrames = 0;
 	private int _cameraZoomedFrames = 0;
@@ -67,6 +67,7 @@ public class StartGame : MonoBehaviour
 				{
 					Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.BlockButton);
 					Game.BottomBarWindow.HighlightButton(BottomBarWindow.ButtonTypes.BlockButton);
+					Game.BottomBarWindow.OnButtonPressed += PressedBlockButtonCheck;
 				};
 			};
 		};
@@ -92,5 +93,15 @@ public class StartGame : MonoBehaviour
 			Popup.activePopup.FadeOut();
 			Game.MainCamera.Zooming.OnZooming -= CameraZoomingCheck;
 		}
+	}
+
+	private void PressedBlockButtonCheck(BottomBarWindow.ButtonTypes buttonType)
+	{
+		if (buttonType != BottomBarWindow.ButtonTypes.BlockButton)
+			return;
+
+		Popup.activePopup.FadeOut();
+		Game.BottomBarWindow.UnhighlightButton(BottomBarWindow.ButtonTypes.BlockButton);
+		Game.BottomBarWindow.OnButtonPressed -= PressedBlockButtonCheck;
 	}
 }
