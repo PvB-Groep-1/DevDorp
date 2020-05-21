@@ -12,6 +12,9 @@ public sealed class RotateLogic : ExecutionLogic
     [SerializeField]
     private RotLogic _RotLogic;
 
+    /// <summary>
+    /// Creates the Command, and executes the rotation according to the parameters given in _XYLogic and _RotLogic.
+    /// </summary>
     public override void Execute()
     {
         if (_XYLogic.inputFieldX.text == "" || _XYLogic.inputFieldY.text == "" || _RotLogic.inputFieldRot.text == "")
@@ -21,6 +24,9 @@ public sealed class RotateLogic : ExecutionLogic
         command.Execute();
     }
     
+    /// <summary>
+    /// Sets the values of the _XYLogic and _RotLogic.
+    /// </summary>
     public void SetValues()
     {
         _XYLogic.SetValues();
