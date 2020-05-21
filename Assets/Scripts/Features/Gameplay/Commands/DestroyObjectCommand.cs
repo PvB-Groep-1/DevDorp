@@ -56,7 +56,6 @@ public class DestroyObjectCommand : Command
         else
         {
             // Show to player that is not possible because space is not occupied 
-            Debug.Log("Ah oh");
             return;
         }
     }
