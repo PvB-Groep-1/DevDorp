@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1301429619924811083}
   - component: {fileID: 1301429619924811084}
   - component: {fileID: 2117338005778172871}
+  - component: {fileID: 344263647}
   m_Layer: 0
   m_Name: Single Scene Testing
   m_TagString: EditorOnly
@@ -95,3 +96,17 @@ MonoBehaviour:
     model: {fileID: 3506518322666224469, guid: fae46c6fcd8903347910fb5b0fa3e0b1, type: 3}
   - type: 9
     model: {fileID: 5553024514521576506, guid: 426c5302ec37cfc4691bef923bc4851d, type: 3}
+--- !u!114 &344263647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301429619924811086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28947104b836d7043a3d44529e828aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _popupPrefab: {fileID: 2660571580077799496, guid: 99ab1c3ca9a38c944b0178e219f2c0dc,
+    type: 3}
