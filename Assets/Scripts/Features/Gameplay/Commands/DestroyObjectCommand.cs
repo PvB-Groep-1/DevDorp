@@ -50,13 +50,17 @@ public class DestroyObjectCommand : Command
         {
             for (int i = 0; i < hitCollider.Length; i++)
             {
-                Object.Destroy(hitCollider[i].gameObject);
+				Building building = hitCollider[i].gameObject.GetComponent<Building>();
+
+				if (building)
+					BlockProgrammingWindow.DestroyBuilding(building.buildingType);
+
+				Object.Destroy(hitCollider[i].gameObject);
             }
         }
         else
         {
             // Show to player that is not possible because space is not occupied 
-            Debug.Log("Ah oh");
             return;
         }
     }

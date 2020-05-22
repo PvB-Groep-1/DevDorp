@@ -11,6 +11,8 @@ public class SpawnObjectCommand : Command
 
     private GameObject _newObject = null;
 
+	private BuildingTypes _buildingType;
+
     // X position for the object that has to be destroyed.
     private int _xPos             = 0;
     // Z position for the object that has to be destroyed.
@@ -22,10 +24,11 @@ public class SpawnObjectCommand : Command
     /// <param name="building">Takes in gameobject reference for the object that has to be spawned.</param>
     /// <param name="xPos">Takes in int variable for the X position on which the object has to be spawned.</param>
     /// <param name="zPos">Takes in int variable for the Z position on which the object has to be spawned.</param>
-    public SpawnObjectCommand(GameObject building, int xPos, int zPos)
+    public SpawnObjectCommand(GameObject building, BuildingTypes buildingType, int xPos, int zPos)
     {
         _building = building;
-        _xPos = xPos;
+		_buildingType = buildingType;
+		_xPos = xPos;
         _zPos = zPos;
     }
 
@@ -65,7 +68,15 @@ public class SpawnObjectCommand : Command
             _newObject = Object.Instantiate(_building, new Vector3(_xPos, 0, _zPos), Quaternion.Euler(new Vector3(_building.transform.localEulerAngles.x, 180, _building.transform.localEulerAngles.z)));
 
             _newObject.layer = LayerMask.NameToLayer("Building");
-        }
+
+			Building building = _newObject.AddComponent<Building>();
+
+			if (building)
+			{
+				building.buildingType = _buildingType;
+				BlockProgrammingWindow.BuildBuilding(building.buildingType);
+			}
+		}
         
     }
 }
