@@ -60,9 +60,9 @@ public class IngameUIManager : MonoBehaviour
             if (_HappinessLevel != 2)
             {
                 if (_HappinessLevel < 2)
-                    _SadParticles.Play();
-                else if (_HappinessLevel > 2)
                     _HappyParticles.Play();
+                else if (_HappinessLevel > 2)
+                    _SadParticles.Play();
 
                 _HappinessFace.sprite = _EmotionSprites[1];
 
@@ -74,9 +74,9 @@ public class IngameUIManager : MonoBehaviour
             if (_HappinessLevel != 3)
             {
                 if (_HappinessLevel < 3)
-                    _SadParticles.Play();
-                else if (_HappinessLevel > 3)
                     _HappyParticles.Play();
+                else if (_HappinessLevel > 3)
+                    _SadParticles.Play();
 
                 _HappinessFace.sprite = _EmotionSprites[2];
 
