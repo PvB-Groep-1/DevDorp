@@ -69,6 +69,9 @@ public class Popup : MonoBehaviour
 	[SerializeField]
 	private Image _imageComponent;
 
+	[SerializeField]
+	private Image _characterImageComponent;
+
 	private void Update()
 	{
 		if (_currentFadeTime != -1 && _targetAlpha == 1)
@@ -99,17 +102,20 @@ public class Popup : MonoBehaviour
 	private void FadingIn()
 	{
 		Color newTextColor = _textComponent.color;
-		Color newImageColor = _textComponent.color;
+		Color newImageColor = _imageComponent.color;
+		Color newCharacterImageColor = _characterImageComponent.color;
 
 		_currentFadeTime += Time.deltaTime / _fadeTime;
 
 		newTextColor.a = Mathf.Lerp(_startAlpha, _targetAlpha, _currentFadeTime);
 		newImageColor.a = Mathf.Lerp(_startAlpha, _targetAlpha, _currentFadeTime);
+		newCharacterImageColor.a = Mathf.Lerp(_startAlpha, _targetAlpha, _currentFadeTime);
 
-		if (_textComponent.color.a >= 1 && _imageComponent.color.a >= 1)
+		if (_textComponent.color.a >= 1 && _imageComponent.color.a >= 1 && _characterImageComponent.color.a >= 1)
 		{
 			newTextColor.a = 1;
 			newImageColor.a = 1;
+			newCharacterImageColor.a = 1;
 			_currentFadeTime = -1;
 			_targetAlpha = -1;
 			OnFullyVisible?.Invoke();
@@ -117,28 +123,33 @@ public class Popup : MonoBehaviour
 
 		_textComponent.color = newTextColor;
 		_imageComponent.color = newImageColor;
+		_characterImageComponent.color = newCharacterImageColor;
 	}
 
 	private void FadingOut()
 	{
 		Color newTextColor = _textComponent.color;
-		Color newImageColor = _textComponent.color;
+		Color newImageColor = _imageComponent.color;
+		Color newCharacterImageColor = _characterImageComponent.color;
 
 		_currentFadeTime += Time.deltaTime / _fadeTime;
 
 		newTextColor.a = Mathf.Lerp(_startAlpha, _targetAlpha, _currentFadeTime);
 		newImageColor.a = Mathf.Lerp(_startAlpha, _targetAlpha, _currentFadeTime);
+		newCharacterImageColor.a = Mathf.Lerp(_startAlpha, _targetAlpha, _currentFadeTime);
 
-		if (_textComponent.color.a <= 0 && _imageComponent.color.a <= 0)
+		if (_textComponent.color.a <= 0 && _imageComponent.color.a <= 0 && _characterImageComponent.color.a <= 0)
 		{
 			newTextColor.a = 0;
 			newImageColor.a = 0;
+			newCharacterImageColor.a = 0;
 			_currentFadeTime = -1;
 			_targetAlpha = -1;
 		}
 
 		_textComponent.color = newTextColor;
 		_imageComponent.color = newImageColor;
+		_characterImageComponent.color = newCharacterImageColor;
 	}
 
 	private void DecreaseLifetime()
@@ -240,13 +251,16 @@ public class Popup : MonoBehaviour
 		_currentFadeTime = 0;
 
 		Color newTextColor = _textComponent.color;
-		Color newImageColor = _textComponent.color;
+		Color newImageColor = _imageComponent.color;
+		Color newCharacterImageColor = _characterImageComponent.color;
 
 		newTextColor.a = 0;
 		newImageColor.a = 0;
+		newCharacterImageColor.a = 0;
 
 		_textComponent.color = newTextColor;
 		_imageComponent.color = newImageColor;
+		_characterImageComponent.color = newCharacterImageColor;
 	}
 
 	/// <summary>
