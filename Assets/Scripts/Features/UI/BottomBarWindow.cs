@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -22,6 +23,12 @@ public class BottomBarWindow : MonoBehaviour
     [SerializeField]
     private GameObject _gridObject;
 
+    [SerializeField]
+    private Sprite _gridOffSprite;
+
+    [SerializeField]
+    private Sprite _gridOnSprite;
+
     /// <summary>
     /// Opens the code window.
     /// </summary>
@@ -44,5 +51,9 @@ public class BottomBarWindow : MonoBehaviour
     public void ToggleGrid()
     {
         _gridObject.SetActive(!_gridObject.activeSelf);
+        if (_gridButton.image.sprite == _gridOffSprite)
+            _gridButton.image.sprite = _gridOnSprite;
+        else
+            _gridButton.image.sprite = _gridOffSprite;
     }
 }
