@@ -50,7 +50,12 @@ public class DestroyObjectCommand : Command
         {
             for (int i = 0; i < hitCollider.Length; i++)
             {
-                Object.Destroy(hitCollider[i].gameObject);
+				Building building = hitCollider[i].gameObject.GetComponent<Building>();
+
+				if (building)
+					BlockProgrammingWindow.DestroyBuilding(building.buildingType);
+
+				Object.Destroy(hitCollider[i].gameObject);
             }
         }
         else
