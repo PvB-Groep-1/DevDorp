@@ -10,6 +10,9 @@ public sealed class StartGame : MonoBehaviour
 	private int _cameraZoomedFrames = 0;
 
 	[SerializeField]
+	private bool _showTutorial = true;
+
+	[SerializeField]
 	private float _tutorialDelayInSeconds = 5f;
 
 	[SerializeField]
@@ -24,17 +27,25 @@ public sealed class StartGame : MonoBehaviour
 
 	private void Awake()
 	{
-		WorldApi.OnWorldLoad += () =>
-		{
-			Game.BottomBarWindow.DisableButton(BottomBarWindow.ButtonTypes.BlockButton);
-			Game.BottomBarWindow.DisableButton(BottomBarWindow.ButtonTypes.HomeButton);
-			StartCoroutine(StartTutorialRoutine(_tutorialDelayInSeconds));
-		};
+		if (_showTutorial)
+			InitializeTutorial();
 	}
 
 	private void Start()
 	{
 		WorldApi.LoadWorld();
+	}
+
+	private void InitializeTutorial()
+	{
+		WorldApi.OnWorldLoad += () =>
+		{
+			Game.BottomBarWindow.DisableButton(BottomBarWindow.ButtonTypes.BlockButton);
+			Game.BottomBarWindow.DisableButton(BottomBarWindow.ButtonTypes.HomeButton);
+			Game.MainCamera.Dragging.DisableDragging();
+			Game.MainCamera.Zooming.DisableZooming();
+			StartCoroutine(StartTutorialRoutine(_tutorialDelayInSeconds));
+		};
 	}
 
 	private IEnumerator StartTutorialRoutine(float time)
