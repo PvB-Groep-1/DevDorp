@@ -173,6 +173,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3687652334605070808, guid: a83918491f8077149bc14e17075ee01a,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1133075405}
     - target: {fileID: 3687652334605070811, guid: a83918491f8077149bc14e17075ee01a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -296,11 +301,6 @@ PrefabInstance:
     - target: {fileID: 5990545948697160621, guid: a83918491f8077149bc14e17075ee01a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990545949298325107, guid: a83918491f8077149bc14e17075ee01a,
-        type: 3}
-      propertyPath: m_FillAmount
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5990545949574257973, guid: a83918491f8077149bc14e17075ee01a,
@@ -738,6 +738,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1133075405 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8238154943072397141, guid: ccd0a4553623a354d8462ef4be9a3af7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8238154941704605921}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1238101484 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3282127517334239281, guid: c12d589a61d8c3f42a3ea34a52026ab3,
