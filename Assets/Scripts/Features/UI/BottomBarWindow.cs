@@ -1,23 +1,59 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Represents all functionality for the bottom UI bar.
 /// </summary>
 public class BottomBarWindow : MonoBehaviour
 {
-	/// <summary>
-	/// Opens the code window.
-	/// </summary>
-	public void OpenCodeWindow()
-	{
-		WindowApi.OpenWindow(WindowTypes.CodeMenu);
-	}
+    /// <summary>
+    /// All types of buttons in the BottomBarWindow.
+    /// </summary>
+    public enum ButtonTypes
+    {
+        BlockButton,
+        HomeButton,
+        GridButton
+    }
 
-	/// <summary>
-	/// Opens the main menu scene.
-	/// </summary>
-	public void OpenMainMenu()
-	{
-		LevelManager.LoadMainMenu();
-	}
+    [SerializeField]
+    private Button _gridButton;
+
+    [SerializeField]
+    private GameObject _gridObject;
+
+    [SerializeField]
+    private Sprite _gridOffSprite;
+
+    [SerializeField]
+    private Sprite _gridOnSprite;
+
+    /// <summary>
+    /// Opens the code window.
+    /// </summary>
+    public void OpenCodeWindow()
+    {
+        WindowApi.OpenWindow(WindowTypes.CodeMenu);
+    }
+
+    /// <summary>
+    /// Opens the main menu scene.
+    /// </summary>
+    public void OpenMainMenu()
+    {
+        LevelManager.LoadMainMenu();
+    }
+
+    /// <summary>
+    /// Toggles the grid GameObject
+    /// </summary>
+    public void ToggleGrid()
+    {
+        _gridObject.SetActive(!_gridObject.activeSelf);
+        if (_gridButton.image.sprite == _gridOffSprite)
+            _gridButton.image.sprite = _gridOnSprite;
+        else
+            _gridButton.image.sprite = _gridOffSprite;
+    }
 }
