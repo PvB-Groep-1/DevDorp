@@ -14,7 +14,8 @@ public class ResourceDistributor : MonoBehaviour
         _IV = GetComponent<InstantiateVillager>();
 
         BuildingManager.OnHouseBuild += IncreaseVillagers;
-        BlockProgrammingWindow.OnBuildBuilding += BuildingManager.IncreaseAmountBuilding;
+        //BlockProgrammingWindow.OnBuildBuilding += BuildingManager.IncreaseAmountBuilding;
+        BlockProgrammingWindow.OnBuildBuilding += (test) => { Debug.Log(test); };
     }
 
     private void Update()
