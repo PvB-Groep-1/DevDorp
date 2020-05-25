@@ -23,6 +23,8 @@ public static class BuildingManager
 
     public static void IncreaseAmountBuilding(BuildingTypes building)
     {
+        Debug.Log("Test");
+
         BuildingType actualBuilding = BuildingType.none;
 
         if (building == BuildingTypes.Bakery)
