@@ -1,7 +1,11 @@
-﻿public static class BuildingManager
+﻿using UnityEngine;
+using CM.Events;
+public static class BuildingManager
 {
     private static int TotalAmountHouses = 0;
     private static int TotalAmountBakery = 0;
+
+    public static SimpleEvent OnHouseBuild;
 
     public static int GetBuildingAmount(BuildingType building)
     {
@@ -17,16 +21,32 @@
         return 0;
     }
 
-    public static void IncreaseAmountBuilding(BuildingType building, int amount)
+    public static void IncreaseAmountBuilding(BuildingTypes building)
     {
-        switch (building)
+        BuildingType actualBuilding = BuildingType.none;
+
+        if (building == BuildingTypes.Bakery)
+            actualBuilding = BuildingType.bakery;
+        else if (building.ToString().Contains("House"))
+            actualBuilding = BuildingType.house;
+        else
+            actualBuilding = BuildingType.none;
+
+        switch (actualBuilding)
         {
             case BuildingType.bakery:
-                TotalAmountBakery += amount;
+                TotalAmountBakery++;
+                ResourceManager.CalculateNewResourceAmount(ResourceType.bread);
+                Debug.Log("Baker: " + TotalAmountBakery);
                 break;
 
             case BuildingType.house:
-                TotalAmountHouses += amount;
+                TotalAmountHouses++;
+                OnHouseBuild?.Invoke();
+                Debug.Log("House: " + TotalAmountHouses);
+                break;
+
+            case BuildingType.none:
                 break;
         }
     }
@@ -56,4 +76,4 @@
     }
 }
 
-public enum BuildingType { bakery, house }
+public enum BuildingType { bakery, house, none }

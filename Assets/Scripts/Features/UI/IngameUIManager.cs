@@ -19,12 +19,12 @@ public class IngameUIManager : MonoBehaviour
 
     private void Start()
     {
-        CheckHappinessEmote(ResourceManager.GetResourceAmount());
+        CheckHappinessEmote(ResourceManager.GetResourceAmount(ResourceType.happiness));
     }
 
     private void FixedUpdate()
     {
-        UpdateHappinessUI(ResourceManager.GetResourceAmount());
+        UpdateHappinessUI(ResourceManager.GetResourceAmount(ResourceType.happiness));
 
         if (Input.GetKeyDown(KeyCode.J))
         {
