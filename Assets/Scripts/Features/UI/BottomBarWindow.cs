@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -23,7 +23,8 @@ public class BottomBarWindow : MonoBehaviour
 	public enum ButtonTypes
 	{
 		BlockButton,
-		HomeButton
+		HomeButton,
+		GridButton
 	}
 
 	[SerializeField]
@@ -31,6 +32,18 @@ public class BottomBarWindow : MonoBehaviour
 
 	[SerializeField]
 	private Button _homeButton;
+
+	[SerializeField]
+	private Button _gridButton;
+
+	[SerializeField]
+	private GameObject _gridObject;
+
+	[SerializeField]
+	private Sprite _gridOffSprite;
+
+	[SerializeField]
+	private Sprite _gridOnSprite;
 
 	private void Awake()
 	{
@@ -42,6 +55,11 @@ public class BottomBarWindow : MonoBehaviour
 		_homeButton.onClick.AddListener(delegate
 		{
 			OnButtonPressed?.Invoke(ButtonTypes.HomeButton);
+		});
+
+		_gridButton.onClick.AddListener(delegate
+		{
+			OnButtonPressed?.Invoke(ButtonTypes.GridButton);
 		});
 	}
 
@@ -92,6 +110,9 @@ public class BottomBarWindow : MonoBehaviour
 			case ButtonTypes.HomeButton:
 				_homeButton.interactable = false;
 				break;
+			case ButtonTypes.GridButton:
+				_gridButton.interactable = false;
+				break;
 		}
 	}
 
@@ -110,6 +131,9 @@ public class BottomBarWindow : MonoBehaviour
 				break;
 			case ButtonTypes.HomeButton:
 				outline = _homeButton.gameObject.AddComponent<Outline>();
+				break;
+			case ButtonTypes.GridButton:
+				outline = _gridButton.gameObject.AddComponent<Outline>();
 				break;
 		}
 
@@ -137,6 +161,9 @@ public class BottomBarWindow : MonoBehaviour
 			case ButtonTypes.HomeButton:
 				outline = _homeButton.gameObject.GetComponent<Outline>();
 				break;
+			case ButtonTypes.GridButton:
+				outline = _gridButton.gameObject.GetComponent<Outline>();
+				break;
 		}
 
 		if (!outline)
@@ -149,4 +176,16 @@ public class BottomBarWindow : MonoBehaviour
 
 		outlineEffect.FadeOutAndDestroy();
 	}
+
+    /// <summary>
+    /// Toggles the grid GameObject.
+    /// </summary>
+    public void ToggleGrid()
+    {
+        _gridObject.SetActive(!_gridObject.activeSelf);
+        if (_gridButton.image.sprite == _gridOffSprite)
+            _gridButton.image.sprite = _gridOnSprite;
+        else
+            _gridButton.image.sprite = _gridOffSprite;
+    }
 }
