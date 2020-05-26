@@ -1,4 +1,5 @@
 ﻿using CM.Events;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -56,10 +57,25 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 	[SerializeField]
 	private float _snapThreshold = 65f;
 
-	[Header("References")]
-
 	[SerializeField]
 	private Image _image;
+
+	[SerializeField]
+	private AudioClip _snapAudio;
+
+	[SerializeField]
+	private AudioClip _clickAudio;
+
+	[Header("References")]
+
+	
+
+	private AudioSource _audioSource;
+
+	private void Start()
+    {
+		_audioSource = GetComponent<AudioSource>();
+    }
 
 	private void Update()
 	{
@@ -112,6 +128,9 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 	/// <param name="eventData">The current data for the pointer.</param>
 	public void OnPointerDown(PointerEventData eventData)
 	{
+		_audioSource.clip = _clickAudio;
+		_audioSource.Play();
+
 		if (tag == "StartNode")
 			return;
 
@@ -153,6 +172,9 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 
 		_mouseSnapPoint = Input.mousePosition;
 		_isSnapped = true;
+
+		_audioSource.clip = _snapAudio;
+		_audioSource.Play();
 
 		return true;
 	}
