@@ -8,12 +8,16 @@ using UnityEngine;
 public class ResourceDistributor : MonoBehaviour
 {
     // The time between each villager to be spawned.
-    [SerializeField] private float _villagerSpawnTime = 10;
+    [SerializeField]
+    private float _villagerSpawnTime = 10;
 
     // The amount the happiness has to be increased with for each happy villager.
-    [SerializeField] private float _HappinessIncreasePerHappyVillager = 1;
+    [SerializeField]
+    private float _HappinessIncreasePerHappyVillager = 1;
+
     // The amount the happiness has to be decreased with for each annoyed villager.
-    [SerializeField] private float _HappinessDecreasePerMadVillager = 2;
+    [SerializeField]
+    private float _HappinessDecreasePerMadVillager = 2;
 
     private void Awake()
     {

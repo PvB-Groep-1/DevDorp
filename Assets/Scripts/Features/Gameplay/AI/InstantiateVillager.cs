@@ -7,7 +7,8 @@ using UnityEngine;
 public class InstantiateVillager : MonoBehaviour
 {
     // Array reference to all the possible villagers.
-    [SerializeField] private GameObject[] _Villagers = null;
+    [SerializeField]
+    private GameObject[] _Villagers = null;
 
     private static GameObject[] _VillagersStatic = null;
 

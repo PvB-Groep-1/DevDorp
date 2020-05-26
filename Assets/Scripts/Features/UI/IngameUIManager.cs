@@ -7,12 +7,16 @@ using UnityEngine.UI;
 public class IngameUIManager : MonoBehaviour
 {
     // The slider image that shows how much happiness the village has.
-    [SerializeField] private Image _HappinessBar;
+    [SerializeField]
+    private Image _HappinessBar;
+
     // The smiley face image that has to change.
-    [SerializeField] private Image _HappinessFace;
+    [SerializeField]
+    private Image _HappinessFace;
 
     // Array of all the possible images to display emotion of the current happiness level.
-    [SerializeField] private Sprite[] _EmotionSprites = null;
+    [SerializeField]
+    private Sprite[] _EmotionSprites = null;
 
     // Current happiness level.
     private int _HappinessLevel = 0;
