@@ -7,6 +7,12 @@ public static class BuildingManager
 
     public static SimpleEvent OnHouseBuild;
 
+    public static void InitializeBuildingAmount()
+    {
+        TotalAmountHouses = GameObject.FindGameObjectsWithTag("House").Length;
+        TotalAmountBakery = GameObject.FindGameObjectsWithTag("Baker").Length;
+    }
+
     public static int GetBuildingAmount(BuildingType building)
     {
         switch (building)
@@ -44,6 +50,7 @@ public static class BuildingManager
 
             case BuildingType.house:
                 TotalAmountHouses++;
+                ResourceManager.CalculateNewResourceAmount(ResourceType.villagers);
                 OnHouseBuild?.Invoke();
                 Debug.Log("House: " + TotalAmountHouses);
                 break;

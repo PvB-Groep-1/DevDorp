@@ -32,7 +32,7 @@ public class IngameUIManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.K))
         {
-            ResourceManager.IncreaseHappiness(30);
+            ResourceManager.IncreaseResource(ResourceType.happiness, 30);
         }
     }
 

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - SnapPoint
   - StartNode
+  - House
+  - Baker
+  - Villager
   layers:
   - Default
   - TransparentFX

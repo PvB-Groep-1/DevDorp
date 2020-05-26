@@ -1,10 +1,11 @@
-﻿using CM.Events;
+﻿using UnityEngine;
+using CM.Events;
 
 public static class ResourceManager
 {
     private static float _totalAmountHappiness = 30;
-    private static float _totalAmountBread = 0;
 
+    private static int _totalAmountBread = 0;
     private static int _totalAmountVillagers = 0;
     private static int _amountVillagersPerHouse = 5;
     private static int _amountBreadPerBakery = 10;
@@ -12,6 +13,14 @@ public static class ResourceManager
     public static int _totalAmountAllowedVillagers = 0;
 
     public static FloatEvent OnHappinessChanged;
+
+    public static void InitializeResourceAmounts()
+    {
+        CalculateNewResourceAmount(ResourceType.bread);
+        CalculateNewResourceAmount(ResourceType.villagers);
+
+        _totalAmountVillagers = GameObject.FindGameObjectsWithTag("Villager").Length;
+    }
 
     public static float GetResourceAmount(ResourceType resourceType)
     {
@@ -28,14 +37,23 @@ public static class ResourceManager
         return 0;
     }
 
-    public static void IncreaseHappiness(float happiness)
+    public static void IncreaseResource(ResourceType resource, float amount)
     {
-        if ((_totalAmountHappiness + happiness) < 100)
-            _totalAmountHappiness += happiness;
-        else
-            _totalAmountHappiness = 100;
+        switch (resource)
+        {
+            case ResourceType.happiness:
+                if ((_totalAmountHappiness + amount) < 100)
+                    _totalAmountHappiness += amount;
+                else
+                    _totalAmountHappiness = 100;
 
-        OnHappinessChanged?.Invoke(_totalAmountHappiness);
+                OnHappinessChanged?.Invoke(_totalAmountHappiness);
+                break;
+
+            case ResourceType.villagers:
+                _totalAmountVillagers += (int)amount;
+                break;
+        }
     }
 
     public static void DecreaseHappiness(float happiness)

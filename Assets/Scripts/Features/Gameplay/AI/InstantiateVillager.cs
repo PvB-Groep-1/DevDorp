@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.AI;
 using UnityEngine;
 
 public class InstantiateVillager : MonoBehaviour
@@ -10,14 +9,16 @@ public class InstantiateVillager : MonoBehaviour
     {
         int randomVillager = Random.Range(0, _Villagers.Length);
         Vector3 randomPosition = new Vector3(
-            Random.Range(-43, 74),
-            Random.Range(-12, 92));
+            Random.Range(0, 5),
+            .6f,
+            Random.Range(0, 5));
 
         Collider[] coll = Physics.OverlapBox(randomPosition, Vector3.one / 2);
 
         if (coll.Length == 0)
         {
-            Instantiate(_Villagers[randomVillager], transform.position, Quaternion.identity);
+            var villager = Instantiate(_Villagers[randomVillager], randomPosition, Quaternion.identity);
+            villager.GetComponent<NavMeshAgent>().Warp(randomPosition);
         }
     }
 }

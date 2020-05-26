@@ -150,7 +150,12 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
       propertyPath: m_Name
-      value: character1
+      value: Villager 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Villager
       objectReference: {fileID: 0}
     - target: {fileID: 1243445300402941354, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
