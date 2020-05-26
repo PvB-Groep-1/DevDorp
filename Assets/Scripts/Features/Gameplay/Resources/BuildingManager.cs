@@ -29,8 +29,6 @@ public static class BuildingManager
 
     public static void IncreaseAmountBuilding(BuildingTypes building)
     {
-        Debug.Log("Test");
-
         BuildingType actualBuilding = BuildingType.none;
 
         if (building == BuildingTypes.Bakery)
@@ -45,14 +43,12 @@ public static class BuildingManager
             case BuildingType.bakery:
                 TotalAmountBakery++;
                 ResourceManager.CalculateNewResourceAmount(ResourceType.bread);
-                Debug.Log("Baker: " + TotalAmountBakery);
                 break;
 
             case BuildingType.house:
                 TotalAmountHouses++;
                 ResourceManager.CalculateNewResourceAmount(ResourceType.villagers);
                 OnHouseBuild?.Invoke();
-                Debug.Log("House: " + TotalAmountHouses);
                 break;
 
             case BuildingType.none:
@@ -60,26 +56,31 @@ public static class BuildingManager
         }
     }
 
-    public static void DecreaseAmountBuilding(BuildingType building, int amount)
+    public static void DecreaseAmountBuilding(BuildingTypes building)
     {
-        switch (building)
+        BuildingType actualBuilding = BuildingType.none;
+
+        if (building == BuildingTypes.Bakery)
+            actualBuilding = BuildingType.bakery;
+        else if (building.ToString().Contains("House"))
+            actualBuilding = BuildingType.house;
+        else
+            actualBuilding = BuildingType.none;
+
+        switch (actualBuilding)
         {
             case BuildingType.bakery:
-
-                if ((TotalAmountBakery - amount) >= 0)
-                    TotalAmountBakery -= amount;
-                else
-                    TotalAmountBakery = 0;
-
+                TotalAmountBakery--;
+                ResourceManager.CalculateNewResourceAmount(ResourceType.bread);
                 break;
 
             case BuildingType.house:
+                TotalAmountHouses--;
+                ResourceManager.CalculateNewResourceAmount(ResourceType.villagers);
+                OnHouseBuild?.Invoke();
+                break;
 
-                if ((TotalAmountHouses - amount) >= 0)
-                    TotalAmountHouses -= amount;
-                else
-                    TotalAmountHouses = 0;
-
+            case BuildingType.none:
                 break;
         }
     }

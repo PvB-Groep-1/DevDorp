@@ -21,6 +21,7 @@ public class ResourceDistributor : MonoBehaviour
 
         BuildingManager.OnHouseBuild += IncreaseVillagers;
         BlockProgrammingWindow.OnBuildBuilding += BuildingManager.IncreaseAmountBuilding;
+        BlockProgrammingWindow.OnDestroyBuilding += BuildingManager.DecreaseAmountBuilding;
     }
 
     private void Start()
@@ -42,7 +43,7 @@ public class ResourceDistributor : MonoBehaviour
 
         if (amountVillagers <= amountBread)
         {
-            happinessIncrease = (_HappinessIncreasePerHappyVillager * ResourceManager.GetResourceAmount(ResourceType.villagers)) * (Time.deltaTime / 60);
+            happinessIncrease = (_HappinessIncreasePerHappyVillager * ResourceManager.GetResourceAmount(ResourceType.villagers)) * (Time.deltaTime / 120);
 
             ResourceManager.IncreaseResource(ResourceType.happiness, happinessIncrease);
         }
@@ -51,12 +52,18 @@ public class ResourceDistributor : MonoBehaviour
             int extraVillagers = (int)ResourceManager.GetResourceAmount(ResourceType.villagers) - (int)ResourceManager.GetResourceAmount(ResourceType.bread);
             float happinessDecrease = (extraVillagers * _HappinessDecreasePerMadVillager) * (Time.deltaTime / 60);
 
-            happinessIncrease = (_HappinessIncreasePerHappyVillager * ResourceManager.GetResourceAmount(ResourceType.villagers)) * (Time.deltaTime / 60);
+            happinessIncrease = (_HappinessIncreasePerHappyVillager * ResourceManager.GetResourceAmount(ResourceType.villagers)) * (Time.deltaTime / 120);
 
-            if(happinessIncrease > happinessDecrease)
+            if (happinessIncrease > happinessDecrease)
+            {
+                happinessIncrease -= happinessDecrease;
                 ResourceManager.IncreaseResource(ResourceType.happiness, happinessIncrease);
-            else if(happinessDecrease > happinessIncrease)
+            }
+            else if (happinessDecrease > happinessIncrease)
+            {
+                happinessDecrease -= happinessIncrease;
                 ResourceManager.DecreaseHappiness(happinessDecrease);
+            }
         }
     }
 
