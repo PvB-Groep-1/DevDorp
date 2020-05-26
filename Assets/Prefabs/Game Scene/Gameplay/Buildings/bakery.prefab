@@ -103,6 +103,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5165a35f60ea14c8da5294713443a9fe,
+        type: 3}
+      propertyPath: m_TagString
+      value: Baker
+      objectReference: {fileID: 0}
     - target: {fileID: 8141318856046549062, guid: 5165a35f60ea14c8da5294713443a9fe,
         type: 3}
       propertyPath: m_Layer
