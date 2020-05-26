@@ -23,15 +23,34 @@ Animation:
   m_GameObject: {fileID: 3282127517334239281}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08,
+  m_Animation: {fileID: 1827226128182048838, guid: 32101233ae61a4e409ada851843aceb4,
     type: 3}
   m_Animations:
-  - {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08, type: 3}
-  - {fileID: 1827226128182048838, guid: 61a717b63ea5443b5b994e2ba6b775b8, type: 3}
+  - {fileID: 1827226128182048838, guid: 32101233ae61a4e409ada851843aceb4, type: 3}
+  - {fileID: 1827226128182048838, guid: 685cb352a39ea41bb9a612bc05c75f86, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!95 &1888945711
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282127517334239281}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1807542815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +86,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2.0000002
-  m_BaseOffset: 0
+  m_BaseOffset: -0.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1001 &6822276686129832248
@@ -95,32 +114,32 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.3
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 39.42
+      value: -0.63335496
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.4
+      value: -21.74
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
@@ -151,11 +170,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Villager 1
+<<<<<<< HEAD:Assets/Prefabs/Game Scene/Gameplay/Villager 1.prefab
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
       propertyPath: m_TagString
       value: Villager
+=======
+>>>>>>> development:Assets/Prefabs/Game Scene/Gameplay/Villagers/Villager 1.prefab
       objectReference: {fileID: 0}
     - target: {fileID: 1243445300402941354, guid: 46eef25dc0b4f4e0aba5fc402fed59c7,
         type: 3}
