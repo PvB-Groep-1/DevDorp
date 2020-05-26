@@ -1,13 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This class controlls the ingame UI.
+/// </summary>
 public class IngameUIManager : MonoBehaviour
 {
+    // The slider image that shows how much happiness the village has.
     [SerializeField] private Image _HappinessBar;
+    // The smiley face image that has to change.
     [SerializeField] private Image _HappinessFace;
 
+    // Array of all the possible images to display emotion of the current happiness level.
     [SerializeField] private Sprite[] _EmotionSprites = null;
 
+    // Current happiness level.
     private int _HappinessLevel = 0;
 
     private void Awake()
@@ -25,12 +32,14 @@ public class IngameUIManager : MonoBehaviour
         UpdateHappinessUI(ResourceManager.GetResourceAmount(ResourceType.happiness));
     }
 
+    // This function adjusts the slider according to the amount of happiness.
     private void UpdateHappinessUI(float happiness)
     {
         float fillAmount = _HappinessBar.fillAmount;
         _HappinessBar.fillAmount = Mathf.Lerp(fillAmount, (happiness / 100), Time.deltaTime * 1.4f);
     }
 
+    // This function checks if the happiness emote has to change.
     private void CheckHappinessEmote(float currentHappiness)
     {
         if (currentHappiness < 25)

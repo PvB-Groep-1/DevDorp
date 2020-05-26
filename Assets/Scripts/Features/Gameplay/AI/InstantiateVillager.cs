@@ -1,11 +1,18 @@
 ﻿using UnityEngine.AI;
 using UnityEngine;
 
+/// <summary>
+/// This class instantiates a new villager.
+/// </summary>
 public class InstantiateVillager : MonoBehaviour
 {
+    // Array reference to all the possible villagers.
     [SerializeField] private GameObject[] _Villagers = null;
 
-    public void InstantiateRandomVillager()
+    /// <summary>
+    /// This function spawns one of the possible villagers.
+    /// </summary>
+    public static void InstantiateRandomVillager()
     {
         int randomVillager = Random.Range(0, _Villagers.Length);
         Vector3 randomPosition = new Vector3(

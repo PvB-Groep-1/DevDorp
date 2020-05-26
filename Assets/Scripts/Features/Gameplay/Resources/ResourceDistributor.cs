@@ -1,21 +1,22 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class controlls when a resource has to be increased or decreased.
+/// </summary>
 [RequireComponent(typeof(InstantiateVillager))]
 public class ResourceDistributor : MonoBehaviour
 {
-    [SerializeField] private float _villagerSpawnTime = 1;
+    // The time between each villager to be spawned.
+    [SerializeField] private float _villagerSpawnTime = 10;
 
+    // The amount the happiness has to be increased with for each happy villager.
     [SerializeField] private float _HappinessIncreasePerHappyVillager = 1;
+    // The amount the happiness has to be decreased with for each annoyed villager.
     [SerializeField] private float _HappinessDecreasePerMadVillager = 2;
-
-    InstantiateVillager _IV = null;
 
     private void Awake()
     {
-        _IV = GetComponent<InstantiateVillager>();
-
         BuildingManager.InitializeBuildingAmount();
         ResourceManager.InitializeResourceAmounts();
 
@@ -31,10 +32,13 @@ public class ResourceDistributor : MonoBehaviour
 
     private void Update()
     {
-        IncreaseHappiness();
+        PassiveHappinessGainLoss();
     }
 
-    private void IncreaseHappiness()
+    /// <summary>
+    /// This function passively increases or decreases the happiness according to each happy/annoyed villager.
+    /// </summary>
+    private void PassiveHappinessGainLoss()
     {
         int amountBread = (int)ResourceManager.GetResourceAmount(ResourceType.bread);
         int amountVillagers = (int)ResourceManager.GetResourceAmount(ResourceType.villagers);
@@ -67,17 +71,23 @@ public class ResourceDistributor : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This function checks if the game needs to spawn a new villager.
+    /// </summary>
     private void IncreaseVillagers()
     {
         if (ResourceManager.GetResourceAmount(ResourceType.villagers) < ResourceManager._totalAmountAllowedVillagers)
             StartCoroutine(SpawnNewVillager());
     }
 
+    /// <summary>
+    /// This IEnumerator spawns a new villager on a set interfall.
+    /// </summary>
     private IEnumerator SpawnNewVillager()
     {
         yield return new WaitForSeconds(_villagerSpawnTime);
 
-        _IV.InstantiateRandomVillager();
+        InstantiateVillager.InstantiateRandomVillager();
         ResourceManager.IncreaseResource(ResourceType.villagers, 1);
         IncreaseVillagers();
     }
