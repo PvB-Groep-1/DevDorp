@@ -69,6 +69,8 @@ public class BottomBarWindow : MonoBehaviour
 	public void OpenCodeWindow()
 	{
 		WindowApi.OpenWindow(WindowTypes.CodeMenu);
+		Game.MainCamera.Dragging.DisableDragging();
+		Game.MainCamera.Zooming.DisableZooming();
 	}
 
 	/// <summary>

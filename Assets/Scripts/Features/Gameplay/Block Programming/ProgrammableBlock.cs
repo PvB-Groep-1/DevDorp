@@ -1,12 +1,11 @@
 ﻿using CM.Events;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
 /// Represents a code block.
 /// </summary>
-public class ProgrammableBlock : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ProgrammableBlock : MonoBehaviour
 {
 	/// <summary>
 	/// The current ProgrammableBlock attached to the mouse.
@@ -135,19 +134,17 @@ public class ProgrammableBlock : MonoBehaviour, IPointerEnterHandler, IPointerEx
 	}
 
 	/// <summary>
-	/// When mouse enters this object.
+	/// Sets the hovering flag for this object to true.
 	/// </summary>
-	/// <param name="eventData">The current data for the pointer.</param>
-	public void OnPointerEnter(PointerEventData eventData)
+	public void Hover()
 	{
 		_isHovered = true;
 	}
 
 	/// <summary>
-	/// When the mouse leaves this object.
+	/// Sets the hovering flag for this object to false.
 	/// </summary>
-	/// <param name="eventData">The current data for the pointer.</param>
-	public void OnPointerExit(PointerEventData eventData)
+	public void Unhover()
 	{
 		_isHovered = false;
 	}
