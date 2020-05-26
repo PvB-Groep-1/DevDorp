@@ -273,4 +273,40 @@ public class Popup : MonoBehaviour
 		_fadeTime = fadeOutTime;
 		_currentFadeTime = 0;
 	}
+
+	/// <summary>
+	/// Show or hide the character image.
+	/// </summary>
+	/// <param name="value">True if the character needs to be shown.</param>
+	public void ShowCharacter(bool value)
+	{
+		_characterImageComponent.gameObject.SetActive(value);
+	}
+
+	/// <summary>
+	/// Show or hide the background image.
+	/// </summary>
+	/// <param name="value">True if the image needs to be shown.</param>
+	public void ShowImage(bool value)
+	{
+		_imageComponent.gameObject.SetActive(value);
+	}
+
+	/// <summary>
+	/// Sets a new position for the popup window.
+	/// </summary>
+	/// <param name="newPosition">The new position for the popup window.</param>
+	public void SetPosition(Vector3 newPosition)
+	{
+		gameObject.transform.position = newPosition;
+	}
+
+	/// <summary>
+	/// Sets a new character sprite.
+	/// </summary>
+	/// <param name="sprite">The new character sprite.</param>
+	public void SetCharacter(Sprite sprite)
+	{
+		_characterImageComponent.sprite = sprite;
+	}
 }

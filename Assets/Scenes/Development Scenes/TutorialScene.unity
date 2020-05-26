@@ -969,6 +969,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abf6cb1d19956e5499e6b74047096e24, type: 3}
+--- !u!223 &444593938 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 3687652334605070808, guid: a83918491f8077149bc14e17075ee01a,
+    type: 3}
+  m_PrefabInstance: {fileID: 53822713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &676861263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3765137679212955664, guid: f25f6f8a48ccabd4e9930a170a563eaf,
@@ -1465,11 +1471,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71717c2e769a0bc4c89f71427aee0735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showTutorial: 0
+  _showTutorial: 1
   _tutorialDelayInSeconds: 3
   _popupFadeInTime: 1
   _popupFadeOutTime: 1
   _popupFinishDelay: 3
+  _popupCutsceneLifetime: 15
+  _canvas: {fileID: 444593938}
+  _cutsceneUIPrefab: {fileID: 7231105566202602873, guid: 6bb02629b32a9fd4aac18b32a13c1f57,
+    type: 3}
+  _cutsceneImage1: {fileID: 21300000, guid: a3ab21c1872b6465ea7a9d069120ff27, type: 3}
+  _cutsceneImage2: {fileID: 21300000, guid: 4fa9efda84ce64dadb5a697bc5e51194, type: 3}
+  _cutsceneImage3: {fileID: 21300000, guid: 4b5b2e4d7ad24487588ccd14d98512ff, type: 3}
+  _characterImage1: {fileID: 21300000, guid: 52be7e243eb6e48899eb2cb19f0e2bde, type: 3}
+  _characterImage2: {fileID: 21300000, guid: 5330fa5093419418392c1edf88fa30ed, type: 3}
 --- !u!114 &1652730169
 MonoBehaviour:
   m_ObjectHideFlags: 0
