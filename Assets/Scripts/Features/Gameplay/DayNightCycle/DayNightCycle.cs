@@ -2,9 +2,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Changes the light to day and night.
+/// </summary>
 [RequireComponent(typeof(Light))]
 public class DayNightCycle : MonoBehaviour
 {
+	/// <summary>
+	/// The current day of the world.
+	/// </summary>
 	public int CurrentDay { get; private set; }
 
 	private Light _light;
