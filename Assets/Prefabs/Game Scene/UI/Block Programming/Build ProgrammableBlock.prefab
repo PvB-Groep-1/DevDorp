@@ -132,7 +132,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8865973707209431161}
         m_MethodName: SetValues
         m_Mode: 1
         m_Arguments:
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8865973707209431161}
         m_MethodName: SetValues
         m_Mode: 1
         m_Arguments:
@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8865973707209431161}
         m_MethodName: SetValues
         m_Mode: 1
         m_Arguments:

@@ -135,10 +135,10 @@ MonoBehaviour:
   _snapPoints:
     left:
       direction: 0
-      snapPoint: {fileID: 0}
+      snapPoint: {fileID: 5392396197170544910}
     right:
       direction: 1
-      snapPoint: {fileID: 0}
+      snapPoint: {fileID: 3971676175519118273}
     up:
       direction: 2
       snapPoint: {fileID: 0}
@@ -161,12 +161,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _XYLogic:
-    inputFieldX: {fileID: 0}
-    inputFieldY: {fileID: 0}
+    inputFieldX: {fileID: 4382352826750812605}
+    inputFieldY: {fileID: 3118198186013404143}
     x: 0
     y: 0
   _RotLogic:
-    inputFieldRot: {fileID: 0}
+    inputFieldRot: {fileID: 2837308245537731400}
     rot: 0
 --- !u!1 &4262065161802230837
 GameObject:
