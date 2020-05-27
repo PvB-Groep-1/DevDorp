@@ -64,6 +64,9 @@ public sealed class BuildLogic : ExecutionLogic
 			case "Stadhuis":
 				_buildingType = BuildingTypes.Townhall;
 				break;
+			case "Moestuin":
+				_buildingType = BuildingTypes.Moestuin;
+				break;
 		}
 
 		_XYLogic.SetValues();
