@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Class that changes the value of the AudioSource component on the same gameobject.
+/// </summary>
 public class VolumeValueChange : MonoBehaviour
 {
     // Reference to Audio Source component.
