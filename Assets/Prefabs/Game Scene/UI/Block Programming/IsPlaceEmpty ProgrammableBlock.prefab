@@ -221,7 +221,7 @@ MonoBehaviour:
   _lockToMouse: 0
   _snapThreshold: 60
   _snapClip: {fileID: 8300000, guid: 92dab1b02ead21b4c9ba7a5e40b3b449, type: 3}
-  _clickClip: {fileID: 8300000, guid: 1c40744ec4a76ab449df58550670ecaf, type: 3}
+  _clickClip: {fileID: 8300000, guid: 956efb35769ddc448aff8f40a38998cc, type: 3}
   _image: {fileID: 4894022348151366738}
 --- !u!114 &4894022346803457982
 MonoBehaviour:
