@@ -8,7 +8,7 @@ public class InitializePopups : MonoBehaviour
 	[SerializeField]
 	private GameObject _popupPrefab;
 
-	private void Start()
+	private void Awake()
 	{
 		Popup.popupPrefab = _popupPrefab;
 	}

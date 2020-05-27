@@ -96,6 +96,8 @@ MonoBehaviour:
     model: {fileID: 3506518322666224469, guid: fae46c6fcd8903347910fb5b0fa3e0b1, type: 3}
   - type: 9
     model: {fileID: 5553024514521576506, guid: 426c5302ec37cfc4691bef923bc4851d, type: 3}
+  - type: 10
+    model: {fileID: 8075384450208478746, guid: dc5f054771d7eb14fbda8a5212e757e2, type: 3}
 --- !u!114 &344263647
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1449,7 +1449,7 @@ MonoBehaviour:
   _popupFadeInTime: 1
   _popupFadeOutTime: 1
   _popupFinishDelay: 3
-  _popupCutsceneLifetime: 1
+  _popupCutsceneLifetime: 15
   _canvas: {fileID: 444593938}
   _cutsceneUIPrefab: {fileID: 7231105566202602873, guid: 6bb02629b32a9fd4aac18b32a13c1f57,
     type: 3}
