@@ -9678,6 +9678,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2751220240738108663, guid: e87469b5eb06b314c9e3f57b92c3911c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3183793888809758200, guid: e87469b5eb06b314c9e3f57b92c3911c,
         type: 3}
       propertyPath: m_Name
@@ -9702,6 +9707,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bakery
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143391919718356195, guid: ab8ac90b5f88edf44a216afe09633d58,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3932528294103541307, guid: ab8ac90b5f88edf44a216afe09633d58,
         type: 3}
@@ -9838,6 +9848,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: house_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3691362116769976787, guid: b12e06fab7966144fb709a05cf6b126e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b12e06fab7966144fb709a05cf6b126e, type: 3}
