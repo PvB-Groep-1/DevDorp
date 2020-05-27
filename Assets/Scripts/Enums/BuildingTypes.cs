@@ -12,5 +12,6 @@ public enum BuildingTypes
 	Bakery,
 	Flat,
 	Store,
-	Townhall
+	Townhall,
+	Moestuin
 }
