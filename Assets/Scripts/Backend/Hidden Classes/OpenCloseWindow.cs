@@ -12,7 +12,20 @@ internal static class OpenCloseWindow
 
 	private static void OpenWindow(GameObject window)
 	{
-		GameObject windowObj = Object.Instantiate(window, window.transform.position, Quaternion.identity, Object.FindObjectOfType<Canvas>().transform);
+		Transform canvas = Object.FindObjectOfType<Canvas>().transform;
+		Transform[] transformsInCanvas = canvas.GetComponentsInChildren<Transform>(true);
+
+		foreach (Transform transform in transformsInCanvas)
+		{
+			if (transform.name == window.name)
+			{
+				transform.gameObject.SetActive(true);
+				WindowApi.OpenedWindows.Add(transform.gameObject);
+				return;
+			}
+		}
+
+		GameObject windowObj = Object.Instantiate(window, window.transform.position, Quaternion.identity, canvas);
 
 		RectTransform rect = windowObj.GetComponent<RectTransform>();
 
@@ -24,6 +37,19 @@ internal static class OpenCloseWindow
 
 	private static void CloseLastWindow(GameObject window)
 	{
+		Transform canvas = Object.FindObjectOfType<Canvas>().transform;
+		Transform[] transformsInCanvas = canvas.GetComponentsInChildren<Transform>(true);
+
+		foreach (Transform transform in transformsInCanvas)
+		{
+			if (transform.name == window.name)
+			{
+				transform.gameObject.SetActive(false);
+				WindowApi.OpenedWindows.RemoveAt(WindowApi.OpenedWindows.Count - 1);
+				return;
+			}
+		}
+
 		Object.Destroy(window);
 		WindowApi.OpenedWindows.RemoveAt(WindowApi.OpenedWindows.Count - 1);
 	}

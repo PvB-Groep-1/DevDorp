@@ -18,13 +18,14 @@ public class SpawnObjectCommand : Command
     // Z position for the object that has to be destroyed.
     private int _zPos             = 0;
 
-    /// <summary>
-    /// Sets the variables for the object that has to be destroyed.
-    /// </summary>
-    /// <param name="building">Takes in gameobject reference for the object that has to be spawned.</param>
-    /// <param name="xPos">Takes in int variable for the X position on which the object has to be spawned.</param>
-    /// <param name="zPos">Takes in int variable for the Z position on which the object has to be spawned.</param>
-    public SpawnObjectCommand(GameObject building, BuildingTypes buildingType, int xPos, int zPos)
+	/// <summary>
+	/// Sets the variables for the object that has to be destroyed.
+	/// </summary>
+	/// <param name="building">Takes in gameobject reference for the object that has to be spawned.</param>
+	/// <param name="buildingType">Takes in the type of the building.</param>
+	/// <param name="xPos">Takes in int variable for the X position on which the object has to be spawned.</param>
+	/// <param name="zPos">Takes in int variable for the Z position on which the object has to be spawned.</param>
+	public SpawnObjectCommand(GameObject building, BuildingTypes buildingType, int xPos, int zPos)
     {
         _building = building;
 		_buildingType = buildingType;

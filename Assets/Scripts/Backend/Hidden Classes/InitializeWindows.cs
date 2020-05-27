@@ -8,7 +8,7 @@ public class InitializeWindows : MonoBehaviour
 {
 	[SerializeField] private Window[] _windows;
 
-	private void Start()
+	private void Awake()
 	{
 		bool undefinedFields = false;
 		bool containsDuplicateWindowTypes = false;
