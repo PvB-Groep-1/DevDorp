@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// Creates a ProgrammableBlock when clicked.
 /// </summary>
-public class ProgrammableBlockCreator : MonoBehaviour, IPointerClickHandler
+public class ProgrammableBlockCreator : MonoBehaviour, IPointerDownHandler
 {
 	[SerializeField]
 	private ProgrammableBlock _programmableBlockPrefab;
@@ -16,7 +16,7 @@ public class ProgrammableBlockCreator : MonoBehaviour, IPointerClickHandler
 	/// When the mouse clicks on this object.
 	/// </summary>
 	/// <param name="eventData">The current data for the pointer.</param>
-	public void OnPointerClick(PointerEventData eventData)
+	public void OnPointerDown(PointerEventData eventData)
 	{
 		if (eventData.pointerId != -1)
 			return;

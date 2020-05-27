@@ -67,6 +67,7 @@ public sealed class StartGame : MonoBehaviour
 		{
 			Game.BottomBarWindow.DisableButton(BottomBarWindow.ButtonTypes.BlockButton);
 			Game.BottomBarWindow.DisableButton(BottomBarWindow.ButtonTypes.HomeButton);
+			Game.BottomBarWindow.DisableButton(BottomBarWindow.ButtonTypes.GridButton);
 			Game.MainCamera.Dragging.DisableDragging();
 			Game.MainCamera.Zooming.DisableZooming();
 			StartCutscene();
@@ -150,6 +151,12 @@ public sealed class StartGame : MonoBehaviour
 							Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.BlockButton);
 							Game.BottomBarWindow.HighlightButton(BottomBarWindow.ButtonTypes.BlockButton);
 							Game.BottomBarWindow.OnButtonPressed += PressedBlockButtonCheck;
+						};
+
+						popup.OnFinish += () =>
+						{
+							Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.GridButton);
+							Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.HomeButton);
 						};
 					};
 				};

@@ -95,6 +95,9 @@ public class BottomBarWindow : MonoBehaviour
 			case ButtonTypes.HomeButton:
 				_homeButton.interactable = true;
 				break;
+			case ButtonTypes.GridButton:
+				_gridButton.interactable = true;
+				break;
 		}
 	}
 

@@ -22,7 +22,7 @@ public class BlockProgrammingWindow : MonoBehaviour
 	public static event BuildingEvent OnBuildBuilding;
 
 	/// <summary>
-	/// Calls the OnDestroyBuilding event;
+	/// Calls the OnDestroyBuilding event.
 	/// </summary>
 	/// <param name="buildingType">The type of the building.</param>
 	public static void DestroyBuilding(BuildingTypes buildingType)
@@ -31,7 +31,7 @@ public class BlockProgrammingWindow : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Calls the OnBuildBuilding event;
+	/// Calls the OnBuildBuilding event.
 	/// </summary>
 	/// <param name="buildingType">The type of the building.</param>
 	public static void BuildBuilding(BuildingTypes buildingType)
@@ -44,6 +44,8 @@ public class BlockProgrammingWindow : MonoBehaviour
 	/// </summary>
 	public void CloseWindow()
 	{
+		Game.MainCamera.Dragging.EnableDragging();
+		Game.MainCamera.Zooming.EnableZooming();
 		WindowApi.CloseLastWindow();
 	}
 }
