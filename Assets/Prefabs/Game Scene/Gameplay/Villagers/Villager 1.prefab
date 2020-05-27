@@ -153,11 +153,11 @@ Animation:
   m_GameObject: {fileID: 5909300276969453647}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08,
+  m_Animation: {fileID: 1827226128182048838, guid: 32101233ae61a4e409ada851843aceb4,
     type: 3}
   m_Animations:
-  - {fileID: 1827226128182048838, guid: 7c08782e9ec514246ad2459151ad9f08, type: 3}
-  - {fileID: 1827226128182048838, guid: 61a717b63ea5443b5b994e2ba6b775b8, type: 3}
+  - {fileID: 1827226128182048838, guid: 32101233ae61a4e409ada851843aceb4, type: 3}
+  - {fileID: 1827226128182048838, guid: 685cb352a39ea41bb9a612bc05c75f86, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -197,7 +197,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2.0000002
-  m_BaseOffset: -0.4
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!95 &5909300276969453646

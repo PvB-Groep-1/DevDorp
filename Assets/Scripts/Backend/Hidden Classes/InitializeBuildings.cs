@@ -8,7 +8,7 @@ public class InitializeBuildings : MonoBehaviour
 {
 	[SerializeField] private Building[] _buildings;
 
-	private void Start()
+	private void Awake()
 	{
 		bool undefinedFields = false;
 		bool containsDuplicateBuildingTypes = false;

@@ -1,12 +1,11 @@
 ﻿using CM.Events;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
 /// Represents a code block.
 /// </summary>
-public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
+public class ProgrammableBlock : MonoBehaviour
 {
 	/// <summary>
 	/// The current ProgrammableBlock attached to the mouse.
@@ -30,6 +29,7 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 
 	private Vector3 _mouseSnapPoint;
 	private bool _isSnapped = false;
+	private bool _isHovered = false;
 
 	/// <summary>
 	/// Represents 4 directions.
@@ -63,8 +63,14 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 
 	private void Update()
 	{
+		if (Input.GetMouseButtonDown(0) && _isHovered)
+			LockToMouse();
+
 		if (!_lockToMouse)
 			return;
+
+		if (Input.GetMouseButtonUp(0))
+			UnlockFromMouse();
 
 		if (CurrentlyMovingProgrammableBlock != this)
 			return;
@@ -83,6 +89,27 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 			Mathf.Clamp(transform.position.y, 430, 850),
 			transform.position.z
 		);
+	}
+
+	private void LockToMouse()
+	{
+		if (tag == "StartNode")
+			return;
+
+		_lockToMouse = true;
+		_mouseSnapPoint = transform.position;
+
+		transform.SetAsLastSibling();
+
+		CurrentlyMovingProgrammableBlock = this;
+	}
+
+	private void UnlockFromMouse()
+	{
+		_lockToMouse = false;
+		_mouseSnapPoint = transform.position;
+
+		CurrentlyMovingProgrammableBlock = null;
 	}
 
 	private bool CanSnapDirection(Direction direction1, Direction direction2)
@@ -107,33 +134,19 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 	}
 
 	/// <summary>
-	/// When you click on this object.
+	/// Sets the hovering flag for this object to true.
 	/// </summary>
-	/// <param name="eventData">The current data for the pointer.</param>
-	public void OnPointerDown(PointerEventData eventData)
+	public void Hover()
 	{
-		if (tag == "StartNode")
-			return;
+		_isHovered = true;
+	}
 
-		_lockToMouse = !_lockToMouse;
-		_mouseSnapPoint = transform.position;
-
-		if (_lockToMouse)
-		{
-			/*
-				Move the transform to the end of the local transform list.
-				This object will be drawn on top of other objects.
-			*/
-			transform.SetAsLastSibling();
-
-			ReleaseSnap();
-
-			CurrentlyMovingProgrammableBlock = this;
-		}
-		else
-		{
-			CurrentlyMovingProgrammableBlock = null;
-		}
+	/// <summary>
+	/// Sets the hovering flag for this object to false.
+	/// </summary>
+	public void Unhover()
+	{
+		_isHovered = false;
 	}
 
 	/// <summary>
@@ -298,6 +311,27 @@ public class ProgrammableBlock : MonoBehaviour, IPointerDownHandler
 			}
 
 			return left;
+		}
+
+		/// <summary>
+		/// Does any snapping point have a connection with another snapping point?
+		/// </summary>
+		/// <returns>True if there is any connection between snapping points.</returns>
+		public bool HasConnection()
+		{
+			if (left.snapPoint && left.snapPoint.ConnectedSnapPoint)
+				return true;
+
+			if (right.snapPoint && right.snapPoint.ConnectedSnapPoint)
+				return true;
+
+			if (up.snapPoint && up.snapPoint.ConnectedSnapPoint)
+				return true;
+
+			if (down.snapPoint && down.snapPoint.ConnectedSnapPoint)
+				return true;
+
+			return false;
 		}
 	}
 

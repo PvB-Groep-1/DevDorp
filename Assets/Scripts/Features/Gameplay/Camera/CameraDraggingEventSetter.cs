@@ -12,11 +12,6 @@ public class CameraDraggingEventSetter : MonoBehaviour
     {
         _cameraDragging = GetComponent<CameraDragging>();
 
-        WorldApi.OnWorldLoad += () =>
-        {
-            _cameraDragging.EnableDragging();
-        };
-
         WorldApi.OnWorldResume += () =>
         {
             _cameraDragging.EnableDragging();
