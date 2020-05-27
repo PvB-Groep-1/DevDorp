@@ -15,11 +15,6 @@ public class CameraZoomingEventSetter : MonoBehaviour
         _cameraZooming = GetComponent<CameraZooming>();
         _cameraDragging = GetComponent<CameraDragging>();
 
-        WorldApi.OnWorldLoad += () =>
-        {
-            _cameraZooming.EnableZooming();
-        };
-
         WorldApi.OnWorldResume += () =>
         {
             _cameraZooming.EnableZooming();

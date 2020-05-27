@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 /// <summary>
@@ -9,6 +10,11 @@ public sealed class StartLogic : ExecutionLogic
 {
 	private ProgrammableBlock _currentProgrammableBlock;
 	private bool _isRunning = false;
+
+	/// <summary>
+	/// An event for when the start logic finishes running.
+	/// </summary>
+	public UnityEvent OnFinish;
 
 	private void AddOutline(ProgrammableBlock programmableBlock)
 	{
@@ -79,6 +85,7 @@ public sealed class StartLogic : ExecutionLogic
 		}
 
 		_isRunning = false;
+		OnFinish.Invoke();
 
 		yield return null;
 	}

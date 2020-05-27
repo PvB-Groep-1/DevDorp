@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8238154943072397144}
   - component: {fileID: 8238154943072397143}
   - component: {fileID: 8238154943072397145}
+  - component: {fileID: 4815057145936018287}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -45,8 +46,8 @@ Camera:
   m_GameObject: {fileID: 8238154943072397139}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.514151, g: 0.7030922, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -116,9 +117,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boundary:
-    min: {x: -10, y: -10}
-    max: {x: 10, y: 10}
-  _draggingSpeedMultiplier: 1
+    min: {x: -15, y: -40}
+    max: {x: 55, y: 65}
+  _draggingSpeedMultiplier: 3
   _draggingThreshold: 0.01
   _canDrag: 1
 --- !u!114 &8238154943072397143
@@ -143,5 +144,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5bebaed8ad2460498af802fb22b3dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4815057145936018287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238154943072397139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fc1e2abf00a7d4ba81a735de81dda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

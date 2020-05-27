@@ -27,6 +27,10 @@ public class SnapPoint : MonoBehaviour
 				return;
 
 			ConnectedSnapPoint.ConnectedSnapPoint = null;
+
+			if (!ConnectedSnapPoint.ProgrammableBlock.SnappingPoints.HasConnection())
+				ConnectedSnapPoint.ProgrammableBlock.ReleaseSnap();
+
 			ConnectedSnapPoint = null;
 		};
 	}
@@ -51,6 +55,7 @@ public class SnapPoint : MonoBehaviour
 		{
 			ConnectedSnapPoint = otherSnapPoint;
 			otherSnapPoint.ConnectedSnapPoint = this;
+			otherSnapPoint.ProgrammableBlock.SnapTo(otherSnapPoint, this);
 		}
 	}
 

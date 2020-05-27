@@ -92,7 +92,7 @@ public class CameraDragging : MonoBehaviour
         if ((Mathf.Abs(newPosition.x) > _draggingThreshold || Mathf.Abs(newPosition.y) > _draggingThreshold) || _isDragging)
         {
             _isDragging = true;
-            // Move the Camera.
+			// Move the Camera.
             transform.position = new Vector3(
                 _previousPosition.x + -newPosition.x * _draggingSpeedMultiplier * 10,
                 transform.position.y,
