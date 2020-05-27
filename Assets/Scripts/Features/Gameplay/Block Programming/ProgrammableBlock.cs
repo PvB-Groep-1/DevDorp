@@ -56,10 +56,23 @@ public class ProgrammableBlock : MonoBehaviour
 	[SerializeField]
 	private float _snapThreshold = 65f;
 
+	[SerializeField]
+	private AudioClip _snapClip;
+
+	[SerializeField]
+	private AudioClip _clickClip;
+
+	private AudioSource _audioSource;
+
 	[Header("References")]
 
 	[SerializeField]
 	private Image _image;
+
+	private void Start()
+    {
+		_audioSource = GetComponent<AudioSource>();
+    }
 
 	private void Update()
 	{
@@ -93,6 +106,9 @@ public class ProgrammableBlock : MonoBehaviour
 
 	private void LockToMouse()
 	{
+		_audioSource.clip = _clickClip;
+		_audioSource.Play();
+
 		if (tag == "StartNode")
 			return;
 
@@ -166,6 +182,9 @@ public class ProgrammableBlock : MonoBehaviour
 
 		_mouseSnapPoint = Input.mousePosition;
 		_isSnapped = true;
+
+		_audioSource.clip = _snapClip;
+		_audioSource.Play();
 
 		return true;
 	}

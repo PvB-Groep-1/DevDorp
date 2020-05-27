@@ -148,9 +148,9 @@ MonoBehaviour:
       snapPoint: {fileID: 0}
   _lockToMouse: 0
   _snapThreshold: 60
+  _snapClip: {fileID: 8300000, guid: 92dab1b02ead21b4c9ba7a5e40b3b449, type: 3}
+  _clickClip: {fileID: 8300000, guid: 956efb35769ddc448aff8f40a38998cc, type: 3}
   _image: {fileID: 2218374204844477536}
-  _snapAudio: {fileID: 8300000, guid: 92dab1b02ead21b4c9ba7a5e40b3b449, type: 3}
-  _clickAudio: {fileID: 8300000, guid: 956efb35769ddc448aff8f40a38998cc, type: 3}
 --- !u!114 &-7903295660280152597
 MonoBehaviour:
   m_ObjectHideFlags: 0
