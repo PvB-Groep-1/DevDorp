@@ -97,9 +97,10 @@ public class ProgrammableBlock : MonoBehaviour
 		}
 
 		transform.position = Input.mousePosition;
+
 		transform.position = new Vector3(
-			Mathf.Clamp(transform.position.x, 410, 1520),
-			Mathf.Clamp(transform.position.y, 430, 850),
+			Mathf.Clamp(transform.position.x, Screen.width * 0.22f, Screen.width * 0.78f),
+			Mathf.Clamp(transform.position.y, Screen.height * 0.43f, Screen.height * 0.7f),
 			transform.position.z
 		);
 	}
