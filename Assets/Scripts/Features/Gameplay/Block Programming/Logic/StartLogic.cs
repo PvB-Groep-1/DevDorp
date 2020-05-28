@@ -101,7 +101,10 @@ public sealed class StartLogic : ExecutionLogic
 		_currentProgrammableBlock = programmableBlock.GetConnectedProgrammableBlock(ProgrammableBlock.Direction.Down);
 
 		if (!_currentProgrammableBlock)
+		{
+			OnFinish.Invoke();
 			return;
+		}
 
 		_isRunning = true;
 		StartCoroutine(ExecutionRoutine());
