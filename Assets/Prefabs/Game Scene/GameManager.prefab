@@ -78,6 +78,10 @@ MonoBehaviour:
   _villagerSpawnTime: 10
   _HappinessIncreasePerHappyVillager: 1
   _HappinessDecreasePerMadVillager: 2
+  _ResourceNotification: {fileID: 3736163360514826757, guid: 956d46c0892a9d54b92af92be5d29706,
+    type: 3}
+  villagers: []
+  notifications: []
 --- !u!114 &3793605742056179741
 MonoBehaviour:
   m_ObjectHideFlags: 0
