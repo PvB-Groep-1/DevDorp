@@ -115,14 +115,17 @@ public class ResourceDistributor : MonoBehaviour
 
         villagers = GameObject.FindGameObjectsWithTag("Villager");
 
-        for (int i = 0; i < instantiateAmount; i++)
+        if (villagers.Length > notifications.Count)
         {
-            Vector3 Screenpos = Camera.main.WorldToScreenPoint(villagers[i].transform.position);
-            GameObject notification = Instantiate(_ResourceNotification, Screenpos, Quaternion.identity);
+            for (int i = 0; i < instantiateAmount; i++)
+            {
+                Vector3 Screenpos = Camera.main.WorldToScreenPoint(villagers[i].transform.position);
+                GameObject notification = Instantiate(_ResourceNotification, Screenpos, Quaternion.identity);
 
-            notification.transform.SetParent(GameObject.FindGameObjectWithTag("NotificationContainer").transform);
+                notification.transform.SetParent(GameObject.FindGameObjectWithTag("NotificationContainer").transform);
 
-            notifications.Add(notification);
+                notifications.Add(notification);
+            }
         }
     }
     
