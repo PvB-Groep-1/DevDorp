@@ -69,7 +69,7 @@ public class ResourceDistributor : MonoBehaviour
 
             ResourceManager.IncreaseResource(ResourceType.happiness, happinessIncrease);
 
-            if(_instantiatedNotifications)
+            if(notifications.Count > 0)
             {
                 for (int i = 0; i < notifications.Count; i++)
                 {
@@ -78,8 +78,6 @@ public class ResourceDistributor : MonoBehaviour
 
                 villagers = null;
                 notifications.Clear();
-
-                _instantiatedNotifications = false;
             }
         }
         else
@@ -87,7 +85,7 @@ public class ResourceDistributor : MonoBehaviour
             int extraVillagers = (int)ResourceManager.GetResourceAmount(ResourceType.villagers) - (int)ResourceManager.GetResourceAmount(ResourceType.bread);
             float happinessDecrease = (extraVillagers * _HappinessDecreasePerMadVillager) * (Time.deltaTime / 60);
 
-            if (!_instantiatedNotifications)
+            if (extraVillagers > notifications.Count)
                 SpawnNotifications(extraVillagers);
 
             NotificationFollowVillager();
@@ -113,16 +111,16 @@ public class ResourceDistributor : MonoBehaviour
     /// <param name="extraVillagers">Takes in the amount of notifications take have to be spawned.</param>
     private void SpawnNotifications(int extraVillagers)
     {
-        _instantiatedNotifications = true;
+        int instantiateAmount = extraVillagers - notifications.Count;
 
         villagers = GameObject.FindGameObjectsWithTag("Villager");
 
-        for (int i = 0; i < extraVillagers; i++)
+        for (int i = 0; i < instantiateAmount; i++)
         {
             Vector3 Screenpos = Camera.main.WorldToScreenPoint(villagers[i].transform.position);
             GameObject notification = Instantiate(_ResourceNotification, Screenpos, Quaternion.identity);
 
-            notification.transform.parent = GameObject.FindGameObjectWithTag("NotificationContainer").transform;
+            notification.transform.SetParent(GameObject.FindGameObjectWithTag("NotificationContainer").transform);
 
             notifications.Add(notification);
         }
