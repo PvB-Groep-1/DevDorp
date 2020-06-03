@@ -11,6 +11,7 @@ public class ConfirmationQuitWindow : MonoBehaviour
     public void CancelQuit()
     {
         WindowApi.CloseLastWindow();
+        DisableMovement();
     }
 
     /// <summary>
@@ -23,5 +24,12 @@ public class ConfirmationQuitWindow : MonoBehaviour
         #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
         #endif
+    }
+
+    // Enable camera movement when cancel quit game.
+    private void DisableMovement()
+    {
+        Game.MainCamera.Dragging.EnableDragging();
+        Game.MainCamera.Zooming.EnableZooming();
     }
 }
