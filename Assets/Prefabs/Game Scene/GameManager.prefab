@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3793605742056179741}
   - component: {fileID: 4741269152194151751}
   - component: {fileID: 7531382811769242157}
+  - component: {fileID: 6329921444700481040}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Villagers:
-  - {fileID: 5909300276969453647, guid: c12d589a61d8c3f42a3ea34a52026ab3, type: 3}
+  - {fileID: 5909300276969453647, guid: 34171b589acafeb4d8467820201bb6e3, type: 3}
   - {fileID: 151764617783917059, guid: f25f6f8a48ccabd4e9930a170a563eaf, type: 3}
   - {fileID: 2212284685139912774, guid: a489a134952196e4fa73aa14bfc3aa34, type: 3}
   - {fileID: 7156136090329353456, guid: 4697381bcb505cf47a66169312393640, type: 3}
@@ -77,6 +78,10 @@ MonoBehaviour:
   _villagerSpawnTime: 10
   _HappinessIncreasePerHappyVillager: 1
   _HappinessDecreasePerMadVillager: 2
+  _ResourceNotification: {fileID: 3736163360514826757, guid: 956d46c0892a9d54b92af92be5d29706,
+    type: 3}
+  villagers: []
+  notifications: []
 --- !u!114 &3793605742056179741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,3 +218,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6329921444700481040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6975114908936849506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a332b6078ea2a5458647d4ab04160c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
