@@ -9,6 +9,7 @@ TagManager:
   - House
   - Baker
   - Villager
+  - NotificationContainer
   layers:
   - Default
   - TransparentFX

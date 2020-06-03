@@ -80,6 +80,16 @@ public class BottomBarWindow : MonoBehaviour
 	{
 		LevelManager.LoadMainMenu();
 	}
+    
+    /// <summary>
+	/// Opens the the exit confirmation window.
+	/// </summary>
+	public void OpenExitConfirmation()
+	{
+        WindowApi.OpenWindow(WindowTypes.ExitConfirmation);
+        Game.MainCamera.Dragging.DisableDragging();
+        Game.MainCamera.Zooming.DisableZooming();
+	}
 
 	/// <summary>
 	/// Enables a button from the ButtonTypes enum.
