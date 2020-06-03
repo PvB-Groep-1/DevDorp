@@ -115,7 +115,7 @@ public sealed class StartGame : MonoBehaviour
 	{
 		yield return new WaitForSeconds(time);
 
-		Popup popup = Popup.Create("Ik wil mijn dorp groter maken, wil je mij helpen? Dan zal ik je uitleggen wat je moet doen.", 10f, _popupFadeInTime, _popupFadeOutTime, _popupFinishDelay);
+		Popup popup = Popup.Create("Ik wil mijn dorp groter maken, wil je mij helpen? Dan zal ik je uitleggen wat je moet doen.", 5f, _popupFadeInTime, _popupFadeOutTime, _popupFinishDelay);
 		popup.SetCharacter(_characterImage2);
 
 		popup.OnFinish += () =>
@@ -140,23 +140,47 @@ public sealed class StartGame : MonoBehaviour
 
 				popup.OnFinish += () =>
 				{
-					popup = Popup.Create("Wat heb je dat snel door!", 5f, _popupFadeInTime, _popupFadeOutTime, 1f);
+					popup = Popup.Create("Wat heb je dat snel door!", 3f, _popupFadeInTime, _popupFadeOutTime, 1f);
 
 					popup.OnFinish += () =>
 					{
-						popup = Popup.Create("Zie je het puzzelstukje onderaan het scherm? Klik op het puzzelstukje.", _popupFadeInTime, _popupFadeOutTime, _popupFinishDelay);
+						popup = Popup.Create("Zie je de rode knop met het raster onderaan het scherm? Klik op het raster.", _popupFadeInTime, _popupFadeOutTime, _popupFinishDelay);
 
 						popup.OnFullyVisible += () =>
 						{
-							Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.BlockButton);
-							Game.BottomBarWindow.HighlightButton(BottomBarWindow.ButtonTypes.BlockButton);
-							Game.BottomBarWindow.OnButtonPressed += PressedBlockButtonCheck;
+							Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.GridButton);
+							Game.BottomBarWindow.HighlightButton(BottomBarWindow.ButtonTypes.GridButton);
+							Game.BottomBarWindow.OnButtonPressed += PressedGridButtonCheck;
 						};
 
 						popup.OnFinish += () =>
 						{
-							Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.GridButton);
-							Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.HomeButton);
+							popup = Popup.Create("Nu zie je alle vakjes in de wereld waar je huizen kan bouwen.", 5f, _popupFadeInTime, _popupFadeOutTime, _popupFinishDelay);
+
+							popup.OnFinish += () =>
+							{
+								popup = Popup.Create("Het getal voor de komma is een X-locatie en het getal achter de komma is een Y-locatie.", 6f, _popupFadeInTime, _popupFadeOutTime, _popupFinishDelay * 2);
+
+								popup.OnFinish += () =>
+								{
+									popup = Popup.Create("Klik op het puzzelstukje onderaan het scherm.", _popupFadeInTime, _popupFadeOutTime, _popupFinishDelay);
+
+									popup.OnFullyVisible += () =>
+									{
+										Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.BlockButton);
+										Game.BottomBarWindow.HighlightButton(BottomBarWindow.ButtonTypes.BlockButton);
+										Game.BottomBarWindow.OnButtonPressed += PressedBlockButtonCheck;
+									};
+
+									popup.OnFinish += () =>
+									{
+										Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.GridButton);
+										Game.BottomBarWindow.EnableButton(BottomBarWindow.ButtonTypes.HomeButton);
+
+										popup = Popup.Create("Nog een laatste tip. Vergeet niet om een bakker te bouwen als je dorpsbewoners brood nodig hebben.", 6f, _popupFadeInTime, _popupFadeOutTime, _popupFinishDelay);
+									};
+								};
+							};
 						};
 					};
 				};
@@ -190,7 +214,7 @@ public sealed class StartGame : MonoBehaviour
 	{
 		_cameraMovedFrames++;
 
-		if (_cameraMovedFrames >= 200)
+		if (_cameraMovedFrames >= 50)
 		{
 			Popup.activePopup.FadeOut();
 			Game.MainCamera.Dragging.OnDragging -= CameraDraggingCheck;
@@ -201,7 +225,7 @@ public sealed class StartGame : MonoBehaviour
 	{
 		_cameraZoomedFrames++;
 
-		if (_cameraZoomedFrames >= 20)
+		if (_cameraZoomedFrames >= 10)
 		{
 			Popup.activePopup.FadeOut();
 			Game.MainCamera.Zooming.OnZooming -= CameraZoomingCheck;
@@ -216,5 +240,16 @@ public sealed class StartGame : MonoBehaviour
 		Popup.activePopup.FadeOut();
 		Game.BottomBarWindow.UnhighlightButton(BottomBarWindow.ButtonTypes.BlockButton);
 		Game.BottomBarWindow.OnButtonPressed -= PressedBlockButtonCheck;
+	}
+
+	private void PressedGridButtonCheck(BottomBarWindow.ButtonTypes buttonType)
+	{
+		if (buttonType != BottomBarWindow.ButtonTypes.GridButton)
+			return;
+
+		Popup.activePopup.FadeOut();
+		Game.BottomBarWindow.UnhighlightButton(BottomBarWindow.ButtonTypes.GridButton);
+		Game.BottomBarWindow.DisableButton(BottomBarWindow.ButtonTypes.GridButton);
+		Game.BottomBarWindow.OnButtonPressed -= PressedGridButtonCheck;
 	}
 }

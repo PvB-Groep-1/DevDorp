@@ -95,11 +95,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showTutorial: 1
-  _tutorialDelayInSeconds: 5
-  _popupFadeInTime: 2
-  _popupFadeOutTime: 2
-  _popupFinishDelay: 3
-  _popupCutsceneLifetime: 15
+  _tutorialDelayInSeconds: 3
+  _popupFadeInTime: 1
+  _popupFadeOutTime: 1
+  _popupFinishDelay: 2
+  _popupCutsceneLifetime: 10
   _canvas: {fileID: 0}
   _cutsceneUIPrefab: {fileID: 7231105566202602873, guid: 6bb02629b32a9fd4aac18b32a13c1f57,
     type: 3}
